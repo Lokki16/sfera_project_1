@@ -11,7 +11,7 @@ class SferaApp extends StatelessWidget {
         title: Constants.appTitle,
         themeMode: ThemeMode.light,
         theme: SferaAppTheme.lightTheme,
-        locale: Locales().ruLocale,
+        locale: Get.deviceLocale,
         translations: GetLocalization(),
         routes: AppRoutes.getRoutes,
         initialRoute: AppRoutes.routeToSettings,
