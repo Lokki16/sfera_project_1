@@ -2,14 +2,14 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
-  final TextStyle? style;
+  final TextStyle? textStyle;
   final double? width;
   final double? height;
 
   const CustomText({
     Key? key,
     required this.text,
-    this.style,
+    this.textStyle,
     this.width,
     this.height,
   }) : super(key: key);
@@ -21,7 +21,7 @@ class CustomText extends StatelessWidget {
       height: height,
       child: Text(
         text.tr,
-        style: style,
+        style: textStyle,
       ),
     );
   }

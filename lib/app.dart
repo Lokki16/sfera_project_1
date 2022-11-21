@@ -14,6 +14,7 @@ class SferaApp extends StatelessWidget {
         locale: Locales().ruLocale,
         translations: GetLocalization(),
         routes: AppRoutes.getRoutes,
+        initialRoute: AppRoutes.routeToSettings,
       ),
     );
   }

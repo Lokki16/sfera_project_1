@@ -33,5 +33,8 @@ export '../widgets/spaced_column/spaced_column.dart';
 export '../widgets/spaced_row/spaced_row.dart';
 export '../widgets/custom_icon/custom_icon.dart';
 export '../widgets/custom_text/custom_text.dart';
+export '../widgets/buttons/custom_button.dart';
 
 // pages
+export '../pages/settings/settings.dart';
+export '../pages/settings/languages.dart';
