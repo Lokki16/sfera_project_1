@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class AppRoutes {
