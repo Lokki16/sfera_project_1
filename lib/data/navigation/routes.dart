@@ -4,12 +4,12 @@ class AppRoutes {
   static const String routeToSettings = 'settings';
   static const String routeToLanguages = 'languages';
   static const String routeToThemes = 'themes';
-  static const String routeToAuth = 'auth';
+  static const String routeToAuthorization = 'authorization';
 
   static dynamic getRoutes = {
-    routeToSettings: (context) => const Settings(),
-    routeToLanguages: (context) => const Languages(),
-    routeToThemes: (context) => const Themes(),
-    routeToAuth: (context) => const Auth(),
+    routeToSettings: (context) => const SettingsPage(),
+    routeToLanguages: (context) => const LanguagesPage(),
+    routeToThemes: (context) => const ThemesPage(),
+    routeToAuthorization: (context) => const AuthorizationPage(),
   };
 }

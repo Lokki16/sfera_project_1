@@ -1,7 +1,7 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
-class Languages extends StatelessWidget {
-  const Languages({super.key});
+class LanguagesPage extends StatelessWidget {
+  const LanguagesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,14 +10,16 @@ class Languages extends StatelessWidget {
         space: 12,
         children: [
           BuildSettingsTile(
-            language: 'Русский',
-            shortLang: 'Ru',
+            text: ConstantText.russian,
             onTap: () => Get.updateLocale(Locales().ruLocale),
           ),
           BuildSettingsTile(
-            language: 'English',
-            shortLang: 'En',
+            text: ConstantText.english,
             onTap: () => Get.updateLocale(Locales().enLocale),
+          ),
+          BuildSettingsTile(
+            text: ConstantText.japanese,
+            onTap: () => Get.updateLocale(Locales().jpLocale),
           ),
           CustomButton(
             text: ConstantText.back,
@@ -30,14 +32,12 @@ class Languages extends StatelessWidget {
 }
 
 class BuildSettingsTile extends StatelessWidget {
-  final String language;
-  final String shortLang;
+  final String text;
   final VoidCallback onTap;
 
   const BuildSettingsTile({
     super.key,
-    required this.language,
-    required this.shortLang,
+    required this.text,
     required this.onTap,
   });
 
@@ -48,12 +48,7 @@ class BuildSettingsTile extends StatelessWidget {
       child: SpacedRow(
         space: 2.w,
         children: [
-          CustomText(
-            text: language,
-          ),
-          CustomText(
-            text: shortLang,
-          ),
+          CustomText(text: text),
         ],
       ),
     );

@@ -1,22 +1,20 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  final String? title;
+  final VoidCallback? onPressed;
 
-  /*final String text;
-  final VoidCallback? onPressed;*/
-
-  /*const CustomAppBar({
+  const CustomAppBar({
     super.key,
-    required this.text,
-    required this.onPressed,
-  });*/
+    this.title,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      title: const CustomText(text: Constants.appTitle),
       backgroundColor: ThemeColors.black,
-      title: const Text(Constants.appTitle),
     );
   }
 
