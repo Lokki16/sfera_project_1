@@ -42,3 +42,5 @@ export '../widgets/buttons/custom_button.dart';
 export '../pages/settings/settings.dart';
 export '../pages/settings/languages.dart';
 export '../pages/settings/themes.dart';
+export '../pages/authorization/auth.dart';
+
