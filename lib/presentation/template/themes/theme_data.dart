@@ -5,4 +5,8 @@ class SferaAppTheme {
         brightness: Brightness.light,
         scaffoldBackgroundColor: ThemeColors.white,
       );
+  static ThemeData get darkTheme => ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: ThemeColors.black,
+      );
 }

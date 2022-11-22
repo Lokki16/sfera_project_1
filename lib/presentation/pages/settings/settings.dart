@@ -6,10 +6,20 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomButton(
-        text: ConstantText.changeLanguage,
-        onPressed: () =>
-            Navigator.of(context).pushNamed(AppRoutes.routeToLanguages),
+      body: SpacedColumn(
+        space: 5.h,
+        children: [
+          CustomButton(
+            text: ConstantText.changeLanguage,
+            onPressed: () =>
+                Navigator.of(context).pushNamed(AppRoutes.routeToLanguages),
+          ),
+          CustomButton(
+            text: 'Сменить тему',
+            onPressed: () =>
+                Navigator.of(context).pushNamed(AppRoutes.routeToThemes),
+          ),
+        ],
       ),
     );
   }

@@ -38,3 +38,4 @@ export '../widgets/buttons/custom_button.dart';
 // pages
 export '../pages/settings/settings.dart';
 export '../pages/settings/languages.dart';
+export '../pages/settings/themes.dart';
