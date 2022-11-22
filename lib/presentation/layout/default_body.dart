@@ -11,10 +11,7 @@ class DefaultBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ThemeColors.black,
-        title: const Text(Constants.appTitle),
-      ),
+      appBar: const CustomAppBar(),
       body: child,
     );
   }

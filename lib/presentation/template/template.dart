@@ -41,6 +41,7 @@ export '../widgets/spaced_row/spaced_row.dart';
 export '../widgets/custom_icon/custom_icon.dart';
 export '../widgets/custom_text/custom_text.dart';
 export '../widgets/buttons/custom_button.dart';
+export '../widgets/appbar/appbar.dart';
 
 // pages
 export '../pages/settings/settings.dart';
