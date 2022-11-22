@@ -1,10 +1,17 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class DefaultBody extends StatelessWidget {
-  const DefaultBody({super.key});
+  final Widget child;
+
+  const DefaultBody({
+    super.key,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: child,
+    );
   }
 }

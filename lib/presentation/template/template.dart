@@ -28,6 +28,9 @@ export '../../data/navigation/routes.dart';
 
 // bloc
 
+// layout
+export '../layout/default_body.dart';
+
 // widgets
 export '../widgets/spaced_column/spaced_column.dart';
 export '../widgets/spaced_row/spaced_row.dart';

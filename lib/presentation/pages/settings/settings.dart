@@ -5,8 +5,8 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SpacedColumn(
+    return DefaultBody(
+      child: SpacedColumn(
         space: 5.h,
         children: [
           CustomButton(

@@ -5,8 +5,8 @@ class Languages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SpacedColumn(
+    return DefaultBody(
+      child: SpacedColumn(
         space: 12,
         children: [
           BuildSettingsTile(
