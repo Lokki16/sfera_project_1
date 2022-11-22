@@ -1,5 +1,5 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
-
+/*
 class WeatherService {
   static String _apiKey = "Здесь должен быть ваш токен";
 
@@ -34,3 +34,4 @@ class WeatherService {
     }
   }
 }
+*/
