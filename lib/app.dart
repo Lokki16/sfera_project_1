@@ -9,7 +9,7 @@ class SferaApp extends StatelessWidget {
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: Constants.showModeBanner,
         title: Constants.appTitle,
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.light,
         theme: SferaAppTheme.lightTheme,
         darkTheme: SferaAppTheme.darkTheme,
         locale: Get.deviceLocale,
