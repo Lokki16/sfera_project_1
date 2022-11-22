@@ -24,7 +24,11 @@ export '../../utils/localization/languages/english_locale.dart';
 // navigation
 export '../../data/navigation/routes.dart';
 
+// services
+export '../../services/weather_api.dart';
+
 // models
+export '../../data/models/weather.dart';
 
 // bloc
 
