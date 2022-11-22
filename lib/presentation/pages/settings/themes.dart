@@ -10,13 +10,17 @@ class Themes extends StatelessWidget {
         space: 12,
         children: [
           BuildSettingsTile2(
-            language: 'Light',
-            onTap: () => Get.changeTheme(SferaAppTheme.lightTheme),
-          ),
+              language: 'Light',
+              onTap: () {
+                Get.changeThemeMode(ThemeMode.light);
+                Get.changeTheme(SferaAppTheme.lightTheme);
+              }),
           BuildSettingsTile2(
-            language: 'Dark',
-            onTap: () => Get.changeTheme(SferaAppTheme.darkTheme),
-          ),
+              language: 'Dark',
+              onTap: () {
+                Get.changeThemeMode(ThemeMode.dark);
+                Get.changeTheme(SferaAppTheme.darkTheme);
+              }),
           CustomButton(
             text: ConstantText.back,
             onPressed: () => Navigator.of(context).pop(),
