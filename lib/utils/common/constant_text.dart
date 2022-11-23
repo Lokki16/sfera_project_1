@@ -16,4 +16,5 @@ class ConstantText {
   static const japanese = 'japanese';
   static const light = 'light';
   static const dark = 'dark';
+  static const settings = 'settings';
 }

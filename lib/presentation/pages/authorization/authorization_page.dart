@@ -101,7 +101,7 @@ class _FormWidgetState extends State<FormWidget> {
                 ),
               ),
               onPressed: () =>
-                  Navigator.of(context).pushNamed(AppRoutes.routeToSettings),
+                  Navigator.of(context).pushNamed(AppRoutes.routeToHome),
               child: const CustomText(text: ConstantText.login),
             ),
             SizedBox(width: 30.w),

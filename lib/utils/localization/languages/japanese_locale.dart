@@ -19,5 +19,6 @@ class Japanese {
     ConstantText.japanese: '日本',
     ConstantText.light: '光',
     ConstantText.dark: '暗い',
+    ConstantText.settings: '設定',
   };
 }

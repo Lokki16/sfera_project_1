@@ -21,5 +21,6 @@ class Russian {
     ConstantText.japanese: 'Японский',
     ConstantText.light: 'Светлая',
     ConstantText.dark: 'Темная',
+    ConstantText.settings: 'Настройки',
   };
 }

@@ -44,7 +44,8 @@ export '../widgets/buttons/custom_button.dart';
 export '../widgets/appbar/appbar.dart';
 
 // pages
+export '../pages/authorization/authorization_page.dart';
+export '../pages/home/home_page.dart';
 export '../pages/settings/settings_page.dart';
 export '../pages/settings/languages_page.dart';
 export '../pages/settings/themes_page.dart';
-export '../pages/authorization/authorization_page.dart';
