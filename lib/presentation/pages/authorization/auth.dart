@@ -41,15 +41,21 @@ class HeaderWidget extends StatelessWidget {
             'Если вы новый пользователь, то необходимо пройти регистрацию',
             style: textStyle,
           ),
-          const SizedBox(height: 5,),
-          TextButton(onPressed: (){}, child: const Text('Зарегестрироваться')),
-          const SizedBox(height: 25,),
+          const SizedBox(
+            height: 5,
+          ),
+          TextButton(onPressed: () {}, child: const Text('Зарегестрироваться')),
+          const SizedBox(
+            height: 25,
+          ),
           Text(
             'Для того, чтобы продолжить нужно пройти верификацию',
             style: textStyle,
           ),
-          const SizedBox(height: 5,),
-          TextButton(onPressed: (){}, child: const Text('Пройти верификацию')),
+          const SizedBox(
+            height: 5,
+          ),
+          TextButton(onPressed: () {}, child: const Text('Пройти верификацию')),
         ],
       ),
     );
@@ -64,14 +70,9 @@ class _FormWidget extends StatefulWidget {
 }
 
 class __FormWidgetState extends State<_FormWidget> {
+  void auth() {}
 
-void auth() {
-
-}
-
-void resetPassword() {
-  
-}
+  void resetPassword() {}
 
   @override
   Widget build(BuildContext context) {
@@ -91,48 +92,56 @@ void resetPassword() {
           'Имя пользователя',
           style: textStyle,
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(
+          height: 5,
+        ),
         TextField(
           decoration: textFieldDecoratior,
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(
+          height: 20,
+        ),
         Text(
           'Пароль',
           style: textStyle,
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(
+          height: 5,
+        ),
         TextField(
           decoration: textFieldDecoratior,
           obscureText: true,
         ),
-        const SizedBox(height: 25,),
+        const SizedBox(
+          height: 25,
+        ),
         Row(
           children: [
             TextButton(
               style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 3, 64, 113)),
+                backgroundColor:
+                    MaterialStatePropertyAll(Color.fromARGB(255, 3, 64, 113)),
                 foregroundColor: MaterialStatePropertyAll(Colors.white),
-                padding: MaterialStatePropertyAll(EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 8,
+                padding: MaterialStatePropertyAll(
+                  EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 8,
                   ),
                 ),
               ),
               onPressed: () {},
               child: const Text('Войти'),
-              ),
-              const SizedBox(width: 30,),
-              TextButton(
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            TextButton(
               onPressed: () {},
               child: const Text('Сбросить пароль'),
-              ),
+            ),
           ],
         )
       ],
     );
   }
 }
-
-
-
-
