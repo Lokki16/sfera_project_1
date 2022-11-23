@@ -14,7 +14,7 @@ class DefaultBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: title),
-      body: Container(
+      body: Column(
           children: [Padding(padding: EdgeInsets.only(bottom: 5)), child]),
     );
   }
