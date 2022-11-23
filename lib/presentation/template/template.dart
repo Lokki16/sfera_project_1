@@ -25,12 +25,15 @@ export '../../utils/localization/languages/english_locale.dart';
 export '../../data/navigation/routes.dart';
 
 // rest
-export '../../data/rest/api_provider.dart';
+export '../../data/repositories/character_repository.dart';
 
 // models
-export '../../data/models/weather_model.dart';
+export '../../data/models/character_models/character_model.dart';
+export '../../data/models/character_models/character_info_model.dart';
+export '../../data/models/character_models/character_results_model.dart';
 
 // bloc
+export '../../bloc/character_bloc/character_bloc.dart';
 
 // layout
 export '../layout/default_body.dart';
@@ -40,6 +43,7 @@ export '../widgets/spaced_column/spaced_column.dart';
 export '../widgets/spaced_row/spaced_row.dart';
 export '../widgets/custom_icon/custom_icon.dart';
 export '../widgets/custom_text/custom_text.dart';
+export '../widgets/custom_text_field/custom_text_field.dart';
 export '../widgets/buttons/custom_button.dart';
 export '../widgets/appbar/appbar.dart';
 

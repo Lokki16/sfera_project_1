@@ -9,4 +9,7 @@ class ThemeColors {
 
   // black
   static const black = Color(0xFF000000);
+
+  // grey
+  static const grey = Color(0x565656CC);
 }
