@@ -76,9 +76,7 @@ class _FormWidgetState extends State<FormWidget> {
         const TextField(decoration: textFieldDecoratior),
         SizedBox(height: 20.h),
         const CustomText(
-          text: ConstantText.password,
-          textStyle: ThemeTextStyle.test,
-        ),
+            text: ConstantText.password, textStyle: ThemeTextStyle.test),
         SizedBox(height: 5.h),
         const TextField(
           decoration: textFieldDecoratior,

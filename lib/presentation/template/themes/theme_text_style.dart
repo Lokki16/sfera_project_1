@@ -5,7 +5,6 @@ class ThemeTextStyle {
   static const fontFamily = '';
 
   static const test = TextStyle(
-    color: ThemeColors.white,
     fontSize: 16.0,
   );
 }
