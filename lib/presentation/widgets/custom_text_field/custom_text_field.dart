@@ -23,7 +23,7 @@ class CustomTextField extends StatelessWidget {
         cursorColor: ThemeColors.white,
         decoration: InputDecoration(
           filled: true,
-          fillColor: ThemeColors.grey,
+          fillColor: ThemeColors.sferaBlueWidget,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
             borderSide: BorderSide.none,
