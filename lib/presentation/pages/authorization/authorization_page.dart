@@ -60,7 +60,7 @@ class FormWidget extends StatefulWidget {
 
 class _FormWidgetState extends State<FormWidget> {
   // Todo
-  CollectionReference usersCollection = Firestore.instance.collection('users');
+  // CollectionReference usersCollection = Firestore.instance.collection('users');
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
