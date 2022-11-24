@@ -2,11 +2,13 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 
 // Todo: Change this widget
 class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final String? hintText;
   final void Function(String)? onChanged;
 
   const CustomTextField({
     super.key,
+    this.controller,
     this.hintText,
     this.onChanged,
   });
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
         horizontal: 16.w,
       ),
       child: TextField(
+        controller: controller,
         style: const TextStyle(color: ThemeColors.white),
         cursorColor: ThemeColors.white,
         decoration: InputDecoration(
