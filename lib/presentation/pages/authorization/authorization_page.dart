@@ -1,3 +1,4 @@
+import 'package:firedart/firedart.dart';
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class AuthorizationPage extends StatelessWidget {
@@ -58,13 +59,22 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  void auth() {}
+  // Todo
+  CollectionReference usersCollection = Firestore.instance.collection('users');
 
-  void resetPassword() {}
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    const textFieldDecoratior = InputDecoration(border: OutlineInputBorder());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,15 +83,14 @@ class _FormWidgetState extends State<FormWidget> {
           textStyle: ThemeTextStyle.test,
         ),
         SizedBox(height: 5.h),
-        const TextField(decoration: textFieldDecoratior),
+        CustomTextField(controller: emailController),
         SizedBox(height: 20.h),
         const CustomText(
-            text: ConstantText.password, textStyle: ThemeTextStyle.test),
-        SizedBox(height: 5.h),
-        const TextField(
-          decoration: textFieldDecoratior,
-          obscureText: true,
+          text: ConstantText.password,
+          textStyle: ThemeTextStyle.test,
         ),
+        SizedBox(height: 5.h),
+        CustomTextField(controller: passwordController),
         SizedBox(height: 25.h),
         Row(
           children: [
@@ -110,6 +119,13 @@ class _FormWidgetState extends State<FormWidget> {
           ],
         )
       ],
+    );
+  }
+
+  Future signIn() async {
+    FirebaseAuth.instance.signIn(
+      emailController.text.trim(),
+      passwordController.text.trim(),
     );
   }
 }
