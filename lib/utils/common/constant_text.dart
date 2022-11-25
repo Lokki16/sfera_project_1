@@ -17,4 +17,5 @@ class ConstantText {
   static const light = 'light';
   static const dark = 'dark';
   static const settings = 'settings';
+  static const search = 'search';
 }

@@ -4,7 +4,7 @@ class SferaAppTheme {
   static ThemeData get lightTheme => ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: ThemeColors.white,
-        hintColor: ThemeColors.black,
+        //hintColor: ThemeColors.black,
         textTheme: TextTheme(
           caption: ThemeTextStyle.test.apply(color: ThemeColors.black),
           bodyText1: ThemeTextStyle.test.apply(color: ThemeColors.black),
@@ -19,7 +19,7 @@ class SferaAppTheme {
   static ThemeData get darkTheme => ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: ThemeColors.sferaBlue,
-        hintColor: ThemeColors.white,
+        //hintColor: ThemeColors.white,
         textTheme: TextTheme(
           caption: ThemeTextStyle.test.apply(color: ThemeColors.white),
           bodyText1: ThemeTextStyle.test.apply(color: ThemeColors.white),
