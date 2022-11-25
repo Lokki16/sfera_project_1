@@ -58,7 +58,9 @@ export '../widgets/modals/popup_layout.dart';
 
 // pages
 export '../pages/authorization/authorization_page.dart';
+export '../pages/authorization/registration_page.dart';
 export '../pages/home/home_page.dart';
 export '../pages/settings/settings_page.dart';
 export '../pages/settings/languages_page.dart';
 export '../pages/settings/themes_page.dart';
+

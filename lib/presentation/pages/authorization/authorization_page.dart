@@ -22,18 +22,10 @@ class AuthorizationPage extends StatelessWidget {
             SizedBox(height: 5.h),
             TextButton(
               child: const CustomText(text: ConstantText.register),
-              onPressed: () {},
+              onPressed: () =>
+                Navigator.of(context).pushNamed(AppRoutes.routeToRegistration),             
             ),
             SizedBox(height: 25.h),
-            const CustomText(
-              text: ConstantText.verificationToContinue,
-              textStyle: ThemeTextStyle.test,
-            ),
-            SizedBox(height: 5.h),
-            TextButton(
-              child: const CustomText(text: ConstantText.passVerification),
-              onPressed: () {},
-            ),
           ],
         ),
       ),
