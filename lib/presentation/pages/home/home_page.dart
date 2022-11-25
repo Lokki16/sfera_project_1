@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             CustomTextField(
                 hintText: 'Search Name',
+                iCon: const Icon(Icons.search, color: Colors.white),
                 onChanged: (value) {
                   currentPage = 1;
                   currentResults = [];
