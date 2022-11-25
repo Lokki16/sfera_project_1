@@ -42,6 +42,11 @@ class _HomePageState extends State<HomePage> {
                   context.read<CharacterBloc>().add(
                       CharacterEvent.fetch(name: value, page: currentPage));
                 }),
+            CustomButton(
+              text: ConstantText.settings,
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.routeToSettings),
+            ),
             Expanded(
               child: state.when(
                 loading: () => const Loading(),
