@@ -95,12 +95,7 @@ class Loaded extends StatelessWidget {
         final character = currentResults[index];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 16.h),
-          child: ListTile(
-            title: CustomText(
-              text: character.name,
-              textStyle: ThemeTextStyle.test.apply(color: ThemeColors.black),
-            ),
-          ),
+          child: ListTile(title: CharacterInfoCard(character: character)),
         );
       },
     );

@@ -4,6 +4,7 @@ export 'package:get/get.dart';
 export 'package:formz/formz.dart';
 export 'package:equatable/equatable.dart';
 export 'package:flutter_svg/flutter_svg.dart';
+export 'package:cached_network_image/cached_network_image.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:desktop_window/desktop_window.dart';
 
@@ -18,6 +19,9 @@ export '../../utils/common/constant_text.dart';
 export '../../utils/common/log_tester.dart';
 export '../../utils/common/sfera_icons.dart';
 export '../../utils/common/validators.dart';
+
+// format
+export '../../utils/format/string_format.dart';
 
 // localization
 export '../../utils/localization/get_localization.dart';
@@ -49,12 +53,14 @@ export '../layout/default_body.dart';
 export '../widgets/spaced_column/spaced_column.dart';
 export '../widgets/spaced_row/spaced_row.dart';
 export '../widgets/custom_icon/custom_icon.dart';
+export '../widgets/custom_image/custom_image.dart';
 export '../widgets/custom_text/custom_text.dart';
 export '../widgets/custom_text_field/custom_text_field.dart';
 export '../widgets/buttons/custom_button.dart';
 export '../widgets/appbar/appbar.dart';
 export '../widgets/modals/show_simple_dialog.dart';
 export '../widgets/modals/popup_layout.dart';
+export '../widgets/character_info/character_info_card.dart';
 
 // pages
 export '../pages/authorization/authorization_page.dart';

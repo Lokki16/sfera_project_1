@@ -25,6 +25,7 @@ dependencies:
   formz: ^0.4.1
   equatable: ^2.0.5
   desktop_window: ^0.4.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
