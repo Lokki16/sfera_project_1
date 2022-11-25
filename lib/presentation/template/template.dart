@@ -5,6 +5,7 @@ export 'package:formz/formz.dart';
 export 'package:equatable/equatable.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:desktop_window/desktop_window.dart';
 
 // themes
 export 'themes/theme_data.dart';
