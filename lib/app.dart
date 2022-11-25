@@ -11,8 +11,12 @@ class SferaApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              CharacterBloc(characterRepository: characterRepository),
+            create: (context) =>
+                CharacterBloc(characterRepository: characterRepository)),
+        BlocProvider(
+          create: (context) => AuthorizationBloc(
+              authenticationRepository:
+                  RepositoryProvider.of<AuthorizationRepository>(context)),
         ),
       ],
       child: ScreenUtilInit(

@@ -22,6 +22,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   json_annotation: ^4.7.0
   freezed_annotation: ^2.2.0
+  formz: ^0.4.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
