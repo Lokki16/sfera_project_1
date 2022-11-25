@@ -1,16 +1,19 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
-// Todo: Change this widget
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
   final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final bool obscureText;
 
   const CustomTextField({
     super.key,
     this.controller,
     this.hintText,
     this.onChanged,
+    this.validator,
+    this.obscureText = false,
   });
 
   @override
@@ -20,8 +23,10 @@ class CustomTextField extends StatelessWidget {
         vertical: 15.h,
         horizontal: 16.w,
       ),
-      child: TextField(
+      child: TextFormField(
+        obscureText: obscureText,
         controller: controller,
+        validator: validator,
         style: const TextStyle(color: ThemeColors.white),
         cursorColor: ThemeColors.white,
         decoration: InputDecoration(

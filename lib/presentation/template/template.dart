@@ -1,8 +1,11 @@
 // packages
 export 'package:flutter/material.dart';
 export 'package:get/get.dart';
+export 'package:formz/formz.dart';
+export 'package:equatable/equatable.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:desktop_window/desktop_window.dart';
 
 // themes
 export 'themes/theme_data.dart';
@@ -24,15 +27,19 @@ export '../../utils/localization/languages/english_locale.dart';
 // navigation
 export '../../data/navigation/routes.dart';
 
-// rest
+// repositories
 export '../../data/repositories/character_repository.dart';
+export '../../data/repositories/authorization_repository.dart';
 
 // models
+export '../../data/models/authorization_models/email_model.dart';
+export '../../data/models/authorization_models/password_model.dart';
 export '../../data/models/character_models/character_model.dart';
 export '../../data/models/character_models/character_info_model.dart';
 export '../../data/models/character_models/character_results_model.dart';
 
 // bloc
+export '../../bloc/authorization_bloc/authorization_bloc.dart';
 export '../../bloc/character_bloc/character_bloc.dart';
 
 // layout
@@ -46,6 +53,8 @@ export '../widgets/custom_text/custom_text.dart';
 export '../widgets/custom_text_field/custom_text_field.dart';
 export '../widgets/buttons/custom_button.dart';
 export '../widgets/appbar/appbar.dart';
+export '../widgets/modals/show_simple_dialog.dart';
+export '../widgets/modals/popup_layout.dart';
 
 // pages
 export '../pages/authorization/authorization_page.dart';
