@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class AuthorizationPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class AuthorizationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 25.h),
-            const AuthorizationForm(),
+            AuthorizationForm(),
             SizedBox(height: 25.h),
             const CustomText(
               text: ConstantText.forNewUser,
@@ -33,29 +34,12 @@ class AuthorizationPage extends StatelessWidget {
   }
 }
 
-class AuthorizationForm extends StatefulWidget {
-  const AuthorizationForm({super.key});
+class AuthorizationForm extends StatelessWidget {
+  AuthorizationForm({super.key});
 
-  @override
-  State<AuthorizationForm> createState() => _AuthorizationFormState();
-}
-
-class _AuthorizationFormState extends State<AuthorizationForm> {
   final AuthorizationRepository firebaseAuthService = AuthorizationRepository();
+
   final signInForm = GlobalKey<FormState>();
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
-  String email = '';
-  String password = '';
-  String signInError = '';
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +53,17 @@ class _AuthorizationFormState extends State<AuthorizationForm> {
             textStyle: ThemeTextStyle.test,
           ),
           SizedBox(height: 5.h),
-          CustomTextField(
-            controller: emailController,
-            onChanged: (value) => setState(() => email = value),
-            validator: (value) => Validator.loginEmailValidator(value),
-            icon: const Icon(Icons.account_box, color: Colors.white),
+          BlocBuilder<AuthorizationBloc, AuthorizationState>(
+            buildWhen: (previous, current) => previous.email != current.email,
+            builder: (context, state) {
+              return CustomTextField(
+                onChanged: (email) => context
+                    .read<AuthorizationBloc>()
+                    .add(AuthorizationEmailChanged(email)),
+                validator: (email) => Validator.loginEmailValidator(email),
+                icon: const Icon(Icons.account_box, color: Colors.white),
+              );
+            },
           ),
           SizedBox(height: 20.h),
           const CustomText(
@@ -81,31 +71,60 @@ class _AuthorizationFormState extends State<AuthorizationForm> {
             textStyle: ThemeTextStyle.test,
           ),
           SizedBox(height: 5.h),
-          CustomTextField(
-            controller: passwordController,
-            obscureText: true,
-            onChanged: (value) => setState(() => password = value),
-            validator: (value) => Validator.loginPasswordValidator(value),
-            icon: const Icon(Icons.lock, color: Colors.white),
+          BlocBuilder<AuthorizationBloc, AuthorizationState>(
+            buildWhen: (previous, current) =>
+                previous.password != current.password,
+            builder: (context, state) {
+              return CustomTextField(
+                obscureText: true,
+                onChanged: (password) => context
+                    .read<AuthorizationBloc>()
+                    .add(AuthorizationPasswordChanged(password)),
+                validator: (password) =>
+                    Validator.loginPasswordValidator(password),
+                icon: const Icon(Icons.lock, color: Colors.white),
+              );
+            },
           ),
           SizedBox(height: 25.h),
           Row(
             children: [
-              TextButton(
-                style: ButtonStyle(
-                  backgroundColor: const MaterialStatePropertyAll(
-                      ThemeColors.sferaBlueWidget),
-                  foregroundColor:
-                      const MaterialStatePropertyAll(ThemeColors.white),
-                  padding: MaterialStatePropertyAll(
-                    EdgeInsets.symmetric(
-                      horizontal: 15.w,
-                      vertical: 8.h,
+              BlocBuilder<AuthorizationBloc, AuthorizationState>(
+                builder: (context, state) {
+                  return TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: const MaterialStatePropertyAll(
+                          ThemeColors.sferaBlueWidget),
+                      foregroundColor:
+                          const MaterialStatePropertyAll(ThemeColors.white),
+                      padding: MaterialStatePropertyAll(
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
+                      ),
                     ),
-                  ),
-                ),
-                onPressed: _onLoginButtonPressed,
-                child: const CustomText(text: ConstantText.login),
+                    onPressed: () async {
+                      if (signInForm.currentState!.validate()) {
+                        final signUpResult = await firebaseAuthService.signIn(
+                            state.email, state.password);
+
+                        if (signUpResult != null &&
+                            !signUpResult
+                                .toString()
+                                .contains('AuthException:')) {
+                          logger('SignIn Success');
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.routeToHome);
+                        } else {
+                          showSimpleDialog(
+                              body: CustomText(text: signUpResult.toString()));
+                          logger(signUpResult.toString());
+                        }
+                      } else {
+                        logger('Unable to validate sign in form!');
+                      }
+                    },
+                    child: const CustomText(text: ConstantText.login),
+                  );
+                },
               ),
               SizedBox(width: 30.w),
               TextButton(
@@ -117,25 +136,5 @@ class _AuthorizationFormState extends State<AuthorizationForm> {
         ],
       ),
     );
-  }
-
-  void _onLoginButtonPressed() async {
-    if (signInForm.currentState!.validate()) {
-      final signUpResult = await firebaseAuthService.signIn(email, password);
-
-      if (!mounted) return;
-
-      if (signUpResult != null &&
-          !signUpResult.toString().contains('AuthException:')) {
-        logger('SignIn Success');
-        Navigator.of(context).pushNamed(AppRoutes.routeToHome);
-      } else {
-        signInError = signUpResult.toString();
-        showSimpleDialog(body: const CustomText(text: 'Error'));
-        logger(signUpResult.toString());
-      }
-    } else {
-      logger('Unable to validate sign in form!');
-    }
   }
 }

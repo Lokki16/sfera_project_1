@@ -1,17 +1,14 @@
 part of 'authorization_bloc.dart';
 
 class AuthorizationState extends Equatable {
-  final EmailModel email;
-  final PasswordModel password;
+  final String email;
+  final String password;
 
-  const AuthorizationState({
-    this.email = const EmailModel.pure(),
-    this.password = const PasswordModel.pure(),
-  });
+  const AuthorizationState({required this.email, required this.password});
 
   AuthorizationState copyWith({
-    EmailModel? email,
-    PasswordModel? password,
+    String? email,
+    String? password,
   }) {
     return AuthorizationState(
       email: email ?? this.email,

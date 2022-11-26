@@ -36,8 +36,7 @@ export '../../data/repositories/character_repository.dart';
 export '../../data/repositories/authorization_repository.dart';
 
 // models
-export '../../data/models/authorization_models/email_model.dart';
-export '../../data/models/authorization_models/password_model.dart';
+export '../../data/models/authorization_models/authorization_model.dart';
 export '../../data/models/character_models/character_model.dart';
 export '../../data/models/character_models/character_info_model.dart';
 export '../../data/models/character_models/character_results_model.dart';
@@ -69,4 +68,3 @@ export '../pages/home/home_page.dart';
 export '../pages/settings/settings_page.dart';
 export '../pages/settings/languages_page.dart';
 export '../pages/settings/themes_page.dart';
-

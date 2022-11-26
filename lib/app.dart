@@ -4,6 +4,7 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 class SferaApp extends StatelessWidget {
   SferaApp({super.key});
 
+  final authorizationRepository = AuthorizationRepository();
   final characterRepository = CharacterRepository();
 
   @override
@@ -12,8 +13,7 @@ class SferaApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AuthorizationBloc(
-              authenticationRepository:
-                  RepositoryProvider.of<AuthorizationRepository>(context)),
+              authenticationRepository: authorizationRepository),
         ),
         BlocProvider(
             create: (context) =>
