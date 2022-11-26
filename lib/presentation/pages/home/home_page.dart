@@ -9,7 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CharacterModel? currentCharacter;
   List<CharacterResultsModel> currentResults = [];
   int currentPage = 1;
   String currentSearch = '';
@@ -50,8 +49,7 @@ class _HomePageState extends State<HomePage> {
               child: state.when(
                 loading: () => const Loading(),
                 loaded: (characterLoaded) {
-                  currentCharacter = characterLoaded;
-                  currentResults = currentCharacter!.results;
+                  currentResults = characterLoaded.results;
                   return currentResults.isNotEmpty
                       ? Loaded(currentResults: currentResults)
                       : const SizedBox.shrink();
@@ -100,12 +98,7 @@ class Loaded extends StatelessWidget {
         final character = currentResults[index];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 16.h),
-          child: ListTile(
-            title: CustomText(
-              text: character.name,
-              textStyle: ThemeTextStyle.test.apply(color: ThemeColors.black),
-            ),
-          ),
+          child: ListTile(title: CharacterInfoCard(character: character)),
         );
       },
     );
