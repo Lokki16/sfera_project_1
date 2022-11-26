@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: 'Home',
       child: BlocBuilder<CharacterBloc, CharacterState>(
         builder: (context, state) {
           return Column(
@@ -38,11 +37,6 @@ class _HomePageState extends State<HomePage> {
                       .read<CharacterBloc>()
                       .add(CharacterEvent.fetch(name: value, page: 1));
                 },
-              ),
-              CustomButton(
-                text: ConstantText.settings,
-                onPressed: () => Navigator.of(context)
-                    .pushNamed(AppRoutes.routeToSettingsPage),
               ),
               Expanded(
                 child: state.when(
