@@ -10,8 +10,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<CharacterResultsModel> currentResults = [];
-  int currentPage = 1;
-  String currentSearch = '';
 
   @override
   void initState() {
@@ -34,11 +32,10 @@ class _HomePageState extends State<HomePage> {
             CustomTextField(
                 icon: const Icon(Icons.search, color: Colors.white),
                 onChanged: (value) {
-                  currentPage = 1;
                   currentResults = [];
-                  currentSearch = value;
-                  context.read<CharacterBloc>().add(
-                      CharacterEvent.fetch(name: value, page: currentPage));
+                  context
+                      .read<CharacterBloc>()
+                      .add(CharacterEvent.fetch(name: value, page: 1));
                 }),
             CustomButton(
               text: ConstantText.settings,

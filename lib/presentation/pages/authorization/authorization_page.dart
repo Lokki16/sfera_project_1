@@ -37,9 +37,8 @@ class AuthorizationPage extends StatelessWidget {
 class AuthorizationForm extends StatelessWidget {
   AuthorizationForm({super.key});
 
-  final AuthorizationRepository firebaseAuthService = AuthorizationRepository();
-
   final signInForm = GlobalKey<FormState>();
+  final firebaseAuthService = AuthorizationRepository();
 
   @override
   Widget build(BuildContext context) {
