@@ -8,27 +8,22 @@ class AuthorizationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultBody(
       title: ConstantText.enterInAccount,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 25.h),
-            AuthorizationForm(),
-            SizedBox(height: 25.h),
-            const CustomText(
-              text: ConstantText.forNewUser,
-              textStyle: ThemeTextStyle.test,
-            ),
-            SizedBox(height: 5.h),
-            TextButton(
-              child: const CustomText(text: ConstantText.register),
-              onPressed: () => Navigator.of(context)
-                  .pushNamed(AppRoutes.routeToRegistration),
-            ),
-            SizedBox(height: 25.h),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AuthorizationForm(),
+          SizedBox(height: 25.h),
+          const CustomText(
+            text: ConstantText.forNewUser,
+            textStyle: ThemeTextSemibold.s20,
+          ),
+          SizedBox(height: 5.h),
+          TextButton(
+            child: const CustomText(text: ConstantText.register),
+            onPressed: () => Navigator.of(context)
+                .pushNamed(AppRoutes.routeToRegistrationPage),
+          ),
+        ],
       ),
     );
   }
@@ -37,101 +32,111 @@ class AuthorizationPage extends StatelessWidget {
 class AuthorizationForm extends StatelessWidget {
   AuthorizationForm({super.key});
 
-  final signInForm = GlobalKey<FormState>();
-  final firebaseAuthService = AuthorizationRepository();
+  final loginFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: signInForm,
-      child: Column(
+      key: loginFormKey,
+      child: SpacedColumn(
+        space: 20,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(
-            text: ConstantText.username,
-            textStyle: ThemeTextStyle.test,
-          ),
-          SizedBox(height: 5.h),
-          BlocBuilder<AuthorizationBloc, AuthorizationState>(
-            buildWhen: (previous, current) => previous.email != current.email,
-            builder: (context, state) {
-              return CustomTextField(
-                onChanged: (email) => context
-                    .read<AuthorizationBloc>()
-                    .add(AuthorizationEmailChanged(email)),
-                validator: (email) => Validator.loginEmailValidator(email),
-                icon: const Icon(Icons.account_box, color: Colors.white),
-              );
-            },
-          ),
-          SizedBox(height: 20.h),
-          const CustomText(
-            text: ConstantText.password,
-            textStyle: ThemeTextStyle.test,
-          ),
-          SizedBox(height: 5.h),
-          BlocBuilder<AuthorizationBloc, AuthorizationState>(
-            buildWhen: (previous, current) =>
-                previous.password != current.password,
-            builder: (context, state) {
-              return CustomTextField(
-                obscureText: true,
-                onChanged: (password) => context
-                    .read<AuthorizationBloc>()
-                    .add(AuthorizationPasswordChanged(password)),
-                validator: (password) =>
-                    Validator.loginPasswordValidator(password),
-                icon: const Icon(Icons.lock, color: Colors.white),
-              );
-            },
-          ),
-          SizedBox(height: 25.h),
-          Row(
-            children: [
-              BlocBuilder<AuthorizationBloc, AuthorizationState>(
-                builder: (context, state) {
-                  return TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: const MaterialStatePropertyAll(
-                          ThemeColors.sferaBlueWidget),
-                      foregroundColor:
-                          const MaterialStatePropertyAll(ThemeColors.white),
-                      padding: MaterialStatePropertyAll(
-                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
-                      ),
-                    ),
-                    onPressed: () async {
-                      if (signInForm.currentState!.validate()) {
-                        final signUpResult = await firebaseAuthService.signIn(
-                            state.email, state.password);
-
-                        if (signUpResult != null &&
-                            !signUpResult
-                                .toString()
-                                .contains('AuthException:')) {
-                          logger('SignIn Success');
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.routeToHome);
-                        } else {
-                          showSimpleDialog(
-                              body: CustomText(text: signUpResult.toString()));
-                          logger(signUpResult.toString());
-                        }
-                      }
-                    },
-                    child: const CustomText(text: ConstantText.login),
-                  );
-                },
-              ),
-              SizedBox(width: 30.w),
-              TextButton(
-                onPressed: () {},
-                child: const CustomText(text: ConstantText.resetPassword),
-              ),
-            ],
-          )
+          const EmailInput(),
+          const PasswordInput(),
+          LoginButton(loginFormKey: loginFormKey),
         ],
       ),
+    );
+  }
+}
+
+class EmailInput extends StatelessWidget {
+  const EmailInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return CustomTextField(
+          nameField: ConstantText.username,
+          icon: Icons.account_box,
+          validator: (email) => Validator.loginEmailValidator(email),
+          onChanged: (email) => context
+              .read<AuthorizationBloc>()
+              .add(AuthorizationEmailChanged(email)),
+        );
+      },
+    );
+  }
+}
+
+class PasswordInput extends StatelessWidget {
+  const PasswordInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return CustomTextField(
+          nameField: ConstantText.password,
+          icon: Icons.lock,
+          obscureText: true,
+          validator: (password) => Validator.loginPasswordValidator(password),
+          onChanged: (password) => context
+              .read<AuthorizationBloc>()
+              .add(AuthorizationPasswordChanged(password)),
+        );
+      },
+    );
+  }
+}
+
+class LoginButton extends StatelessWidget {
+  final GlobalKey<FormState> loginFormKey;
+
+  LoginButton({super.key, required this.loginFormKey});
+
+  final authorizationRepository = AuthorizationRepository();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      builder: (context, state) {
+        return TextButton(
+          style: ButtonStyle(
+            backgroundColor: const MaterialStatePropertyAll(ThemeColors.blue2),
+            foregroundColor: const MaterialStatePropertyAll(ThemeColors.white),
+            padding: MaterialStatePropertyAll(
+                EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h)),
+          ),
+          onPressed: () async {
+            if (loginFormKey.currentState!.validate()) {
+              final signUpResult = await authorizationRepository.signIn(
+                  state.email, state.password);
+
+              if (signUpResult != null &&
+                  !signUpResult.toString().contains('AuthException:')) {
+                logger('SignIn Success');
+                Get.toNamed(AppRoutes.routeToHomePage);
+              } else {
+                showSimpleDialog(
+                    body: CustomText(
+                  text: signUpResult.toString(),
+                  textStyle: ThemeTextSemibold.s20,
+                ));
+                logger(signUpResult.toString());
+              }
+            }
+          },
+          child: const CustomText(
+            text: ConstantText.login,
+            textStyle: ThemeTextSemibold.s20,
+          ),
+        );
+      },
     );
   }
 }

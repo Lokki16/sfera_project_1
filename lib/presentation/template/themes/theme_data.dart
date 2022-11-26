@@ -4,31 +4,28 @@ class SferaAppTheme {
   static ThemeData get lightTheme => ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: ThemeColors.white,
-        //hintColor: ThemeColors.black,
         textTheme: TextTheme(
-          caption: ThemeTextStyle.test.apply(color: ThemeColors.black),
-          bodyText1: ThemeTextStyle.test.apply(color: ThemeColors.black),
-          bodyText2: ThemeTextStyle.test.apply(color: ThemeColors.black),
-          subtitle1: ThemeTextStyle.test.apply(color: ThemeColors.black),
-          subtitle2: ThemeTextStyle.test.apply(color: ThemeColors.black),
-          headline1: ThemeTextStyle.test.apply(color: ThemeColors.black),
-          headline2: ThemeTextStyle.test.apply(color: ThemeColors.black),
+          caption: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
+          bodyText1: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
+          bodyText2: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
+          subtitle1: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
+          subtitle2: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
+          headline1: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
+          headline2: ThemeTextSemibold.s20.apply(color: ThemeColors.black),
         ),
       );
 
   static ThemeData get darkTheme => ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: ThemeColors.sferaBlue,
-        //hintColor: ThemeColors.white,
+        scaffoldBackgroundColor: ThemeColors.blue1,
         textTheme: TextTheme(
-          caption: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          bodyText1: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          bodyText2: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          subtitle1: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          subtitle2: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          headline1: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          headline2: ThemeTextStyle.test.apply(color: ThemeColors.white),
-          //bodyText2: const TextStyle(color: ThemeColors.white),
+          caption: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
+          bodyText1: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
+          bodyText2: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
+          subtitle1: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
+          subtitle2: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
+          headline1: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
+          headline2: ThemeTextSemibold.s20.apply(color: ThemeColors.white),
         ),
       );
 }

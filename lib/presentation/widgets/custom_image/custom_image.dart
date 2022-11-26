@@ -17,12 +17,7 @@ class CustomImage extends StatelessWidget {
     return SizedBox(
       width: width.w,
       height: height.h,
-      child: CachedNetworkImage(
-        imageUrl: image,
-        placeholder: (context, url) =>
-            CircularProgressIndicator(strokeWidth: 2.h),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-      ),
+      child: CachedNetworkImage(imageUrl: image),
     );
   }
 }

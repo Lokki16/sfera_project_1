@@ -14,7 +14,10 @@ class CharacterInfoCard extends StatelessWidget {
           CustomImage(image: character.image),
           Column(
             children: [
-              CustomText(text: character.name),
+              CustomText(
+                text: character.name,
+                textStyle: ThemeTextSemibold.s20,
+              ),
               SizedBox(height: 3.h),
               CharacterStatus(status: character.status),
               SizedBox(height: 5.h),
@@ -23,15 +26,27 @@ class CharacterInfoCard extends StatelessWidget {
                   SpacedColumn(
                     space: 5,
                     children: [
-                      const CustomText(text: 'Species:'),
-                      CustomText(text: character.species),
+                      const CustomText(
+                        text: 'Species:',
+                        textStyle: ThemeTextSemibold.s20,
+                      ),
+                      CustomText(
+                        text: character.species,
+                        textStyle: ThemeTextSemibold.s20,
+                      ),
                     ],
                   ),
                   SpacedColumn(
                     space: 5,
                     children: [
-                      const CustomText(text: 'Gender:'),
-                      CustomText(text: character.gender),
+                      const CustomText(
+                        text: 'Gender:',
+                        textStyle: ThemeTextSemibold.s20,
+                      ),
+                      CustomText(
+                        text: character.gender,
+                        textStyle: ThemeTextSemibold.s20,
+                      ),
                     ],
                   ),
                 ],
@@ -53,9 +68,9 @@ class CharacterStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          Icons.circle,
-          size: 11.h,
+        CustomIcon(
+          icon: Icons.circle,
+          size: 20,
           color: status == 'Alive'
               ? Colors.green
               : status == 'Dead'
@@ -63,7 +78,10 @@ class CharacterStatus extends StatelessWidget {
                   : ThemeColors.white,
         ),
         SizedBox(width: 6.w),
-        CustomText(text: capitalize(status)),
+        CustomText(
+          text: capitalize(status),
+          textStyle: ThemeTextSemibold.s20,
+        ),
       ],
     );
   }

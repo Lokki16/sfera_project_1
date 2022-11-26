@@ -1,19 +1,19 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class AppRoutes {
-  static const String routeToAuthorization = 'authorization';
-  static const String routeToRegistration = 'registration';
-  static const String routeToHome = 'home';
-  static const String routeToSettings = 'settings';
-  static const String routeToLanguages = 'languages';
-  static const String routeToThemes = 'themes';
+  static const String routeToAuthorizationPage = 'authorization_page';
+  static const String routeToRegistrationPage = 'registration_page';
+  static const String routeToHomePage = 'home_page';
+  static const String routeToSettingsPage = 'settings_page';
+  static const String routeToLanguagesPage = 'languages_page';
+  static const String routeToThemesPage = 'themes_page';
 
   static dynamic getRoutes = {
-    routeToAuthorization: (context) => const AuthorizationPage(),
-    routeToRegistration: (context) => const RegistrationPage(),
-    routeToHome: (context) => const HomePage(),
-    routeToSettings: (context) => const SettingsPage(),
-    routeToLanguages: (context) => const LanguagesPage(),
-    routeToThemes: (context) => const ThemesPage(),
+    routeToAuthorizationPage: (context) => const AuthorizationPage(),
+    routeToRegistrationPage: (context) => const RegistrationPage(),
+    routeToHomePage: (context) => const HomePage(),
+    routeToSettingsPage: (context) => const SettingsPage(),
+    routeToLanguagesPage: (context) => const LanguagesPage(),
+    routeToThemesPage: (context) => const ThemesPage(),
   };
 }

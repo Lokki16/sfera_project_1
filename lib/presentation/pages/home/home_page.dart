@@ -25,38 +25,44 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      child:
-          BlocBuilder<CharacterBloc, CharacterState>(builder: (context, state) {
-        return Column(
-          children: [
-            CustomTextField(
-                icon: const Icon(Icons.search, color: Colors.white),
+      title: 'Home',
+      child: BlocBuilder<CharacterBloc, CharacterState>(
+        builder: (context, state) {
+          return Column(
+            children: [
+              CustomTextField(
+                icon: Icons.search,
                 onChanged: (value) {
                   currentResults = [];
                   context
                       .read<CharacterBloc>()
                       .add(CharacterEvent.fetch(name: value, page: 1));
-                }),
-            CustomButton(
-              text: ConstantText.settings,
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(AppRoutes.routeToSettings),
-            ),
-            Expanded(
-              child: state.when(
-                loading: () => const Loading(),
-                loaded: (characterLoaded) {
-                  currentResults = characterLoaded.results;
-                  return currentResults.isNotEmpty
-                      ? Loaded(currentResults: currentResults)
-                      : const SizedBox.shrink();
                 },
-                error: () => const CustomText(text: 'Error'),
               ),
-            ),
-          ],
-        );
-      }),
+              CustomButton(
+                text: ConstantText.settings,
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.routeToSettingsPage),
+              ),
+              Expanded(
+                child: state.when(
+                  loading: () => const Loading(),
+                  loaded: (characterLoaded) {
+                    currentResults = characterLoaded.results;
+                    return currentResults.isNotEmpty
+                        ? Loaded(currentResults: currentResults)
+                        : const SizedBox.shrink();
+                  },
+                  error: () => const CustomText(
+                    text: 'Error',
+                    textStyle: ThemeTextSemibold.s20,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
@@ -73,7 +79,10 @@ class Loading extends StatelessWidget {
         space: 5,
         children: [
           CircularProgressIndicator(strokeWidth: 2.w),
-          const CustomText(text: 'Loading...'),
+          const CustomText(
+            text: 'Loading...',
+            textStyle: ThemeTextSemibold.s20,
+          ),
         ],
       ),
     );

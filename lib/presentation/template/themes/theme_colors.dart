@@ -10,7 +10,7 @@ class ThemeColors {
   // black
   static const black = Color(0xFF000000);
 
-  static const sferaBlue = Color.fromARGB(255, 0, 1, 37);
-
-  static const sferaBlueWidget = Color.fromARGB(255, 8, 10, 71);
+  // blue
+  static const blue1 = Color(0xFF000125);
+  static const blue2 = Color(0xFF080A47);
 }

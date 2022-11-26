@@ -1,25 +1,24 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class CustomIcon extends StatelessWidget {
-  final SferaIcons icon;
-  final Color? color;
+  final IconData icon;
   final double size;
+  final Color color;
+  final VoidCallback? onTap;
 
   const CustomIcon({
     super.key,
     required this.icon,
+    this.size = 30,
     this.color = ThemeColors.white,
-    this.size = 60,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      'assets/icons/${icon.name}.svg',
-      color: color,
-      width: size.w,
-      height: size.h,
-      alignment: Alignment.center,
+    return GestureDetector(
+      onTap: onTap,
+      child: Icon(icon, color: color, size: size),
     );
   }
 }

@@ -4,9 +4,9 @@ showSimpleDialog({
   String? buttonText,
   bool barrierDismissible = true,
   AlignmentGeometry? alignment,
-  double topPadding = 0.0,
-  double bottomPadding = 0.0,
-  double horizontalPadding = 0.0,
+  double topPadding = 0,
+  double bottomPadding = 0,
+  double horizontalPadding = 0,
   double borderRadius = 16,
   required Widget body,
 }) {

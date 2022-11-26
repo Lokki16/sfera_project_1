@@ -6,6 +6,8 @@ class ThemesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
+      title: 'Themes',
+      showAction: false,
       child: SpacedColumn(
         space: 12,
         children: [

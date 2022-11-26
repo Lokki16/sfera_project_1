@@ -18,9 +18,9 @@ class AuthorizationRepository {
 
   Future currentUser() async => await _firebaseAuth.getUser();
 
-  Future signIn(String email, String pass) async {
+  Future signIn(String email, String password) async {
     try {
-      await _firebaseAuth.signIn(email, pass);
+      await _firebaseAuth.signIn(email, password);
       _controller.add(AuthorizationStatus.authenticated);
       return await _firebaseAuth.getUser();
     } catch (e) {
@@ -28,9 +28,9 @@ class AuthorizationRepository {
     }
   }
 
-  Future signUp(String email, String pass) async {
+  Future signUp(String email, String password) async {
     try {
-      await _firebaseAuth.signUp(email, pass);
+      await _firebaseAuth.signUp(email, password);
       _controller.add(AuthorizationStatus.unauthenticated);
       return await _firebaseAuth.getUser();
     } catch (e) {

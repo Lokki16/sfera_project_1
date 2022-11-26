@@ -1,12 +1,12 @@
 // packages
 export 'package:flutter/material.dart';
+export 'package:desktop_window/desktop_window.dart';
+export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get/get.dart';
 export 'package:formz/formz.dart';
 export 'package:equatable/equatable.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:cached_network_image/cached_network_image.dart';
-export 'package:flutter_screenutil/flutter_screenutil.dart';
-export 'package:desktop_window/desktop_window.dart';
 
 // themes
 export 'themes/theme_data.dart';
@@ -17,7 +17,6 @@ export 'themes/theme_colors.dart';
 export '../../utils/common/constants.dart';
 export '../../utils/common/constant_text.dart';
 export '../../utils/common/log_tester.dart';
-export '../../utils/common/sfera_icons.dart';
 export '../../utils/common/validators.dart';
 
 // format
@@ -27,6 +26,7 @@ export '../../utils/format/string_format.dart';
 export '../../utils/localization/get_localization.dart';
 export '../../utils/localization/languages/russian_locale.dart';
 export '../../utils/localization/languages/english_locale.dart';
+export '../../utils/localization/languages/japanese_locale.dart';
 
 // navigation
 export '../../data/navigation/routes.dart';

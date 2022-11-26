@@ -42,3 +42,20 @@ flutter:
 
   assets:
     - assets/fonts/
+
+  fonts:
+    - family: GraphikBold
+      fonts:
+        - asset: assets/fonts/GraphikBold.otf
+
+    - family: GraphikMedium
+      fonts:
+        - asset: assets/fonts/GraphikMedium.otf
+
+    - family: GraphikRegular
+      fonts:
+        - asset: assets/fonts/GraphikRegular.otf
+
+    - family: GraphikSemibold
+      fonts:
+        - asset: assets/fonts/GraphikSemibold.otf

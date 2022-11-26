@@ -14,7 +14,7 @@ class RegistrationPage extends StatelessWidget {
           children: [
             const CustomText(
               text: ConstantText.username,
-              textStyle: ThemeTextStyle.test,
+              textStyle: ThemeTextSemibold.s20,
             ),
             SizedBox(height: 5.h),
             CustomTextField(
@@ -23,7 +23,7 @@ class RegistrationPage extends StatelessWidget {
             SizedBox(height: 20.h),
             const CustomText(
               text: ConstantText.password,
-              textStyle: ThemeTextStyle.test,
+              textStyle: ThemeTextSemibold.s20,
             ),
             SizedBox(height: 5.h),
             CustomTextField(
@@ -35,8 +35,8 @@ class RegistrationPage extends StatelessWidget {
               children: [
                 TextButton(
                   style: ButtonStyle(
-                    backgroundColor: const MaterialStatePropertyAll(
-                        ThemeColors.sferaBlueWidget),
+                    backgroundColor:
+                        const MaterialStatePropertyAll(ThemeColors.blue2),
                     foregroundColor:
                         const MaterialStatePropertyAll(ThemeColors.white),
                     padding: MaterialStatePropertyAll(
@@ -47,12 +47,18 @@ class RegistrationPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: const Text('Зарегестрироваться'),
+                  child: const CustomText(
+                    text: 'Зарегестрироваться',
+                    textStyle: ThemeTextSemibold.s20,
+                  ),
                 ),
                 SizedBox(width: 30.w),
                 TextButton(
                   onPressed: () {},
-                  child: const Text('Войти с помощью Google'),
+                  child: const CustomText(
+                    text: 'Войти с помощью Google',
+                    textStyle: ThemeTextSemibold.s20,
+                  ),
                 ),
               ],
             )
