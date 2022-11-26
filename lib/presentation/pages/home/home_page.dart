@@ -24,39 +24,37 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultBody(
-      child: BlocBuilder<CharacterBloc, CharacterState>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              CustomTextField(
-                icon: Icons.search,
-                onChanged: (value) {
-                  currentResults = [];
-                  context
-                      .read<CharacterBloc>()
-                      .add(CharacterEvent.fetch(name: value, page: 1));
-                },
+    return BlocBuilder<CharacterBloc, CharacterState>(
+      builder: (context, state) {
+        return DefaultBody(
+          searchTitle: CustomTextField(
+            width: context.mediaQuery.size.width / 1.5,
+            height: 52,
+            icon: Icons.search,
+            onChanged: (value) {
+              currentResults = [];
+              context
+                  .read<CharacterBloc>()
+                  .add(CharacterEvent.fetch(name: value, page: 1));
+            },
+          ),
+          child: Expanded(
+            child: state.when(
+              loading: () => const Loading(),
+              loaded: (characterLoaded) {
+                currentResults = characterLoaded.results;
+                return currentResults.isNotEmpty
+                    ? Loaded(currentResults: currentResults)
+                    : const SizedBox.shrink();
+              },
+              error: () => const CustomText(
+                text: 'Error',
+                textStyle: ThemeTextSemibold.s20,
               ),
-              Expanded(
-                child: state.when(
-                  loading: () => const Loading(),
-                  loaded: (characterLoaded) {
-                    currentResults = characterLoaded.results;
-                    return currentResults.isNotEmpty
-                        ? Loaded(currentResults: currentResults)
-                        : const SizedBox.shrink();
-                  },
-                  error: () => const CustomText(
-                    text: 'Error',
-                    textStyle: ThemeTextSemibold.s20,
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

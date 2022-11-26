@@ -25,8 +25,8 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width.w,
-      height: height.h,
+      width: width,
+      height: height,
       child: SpacedColumn(
         space: 5,
         children: [
@@ -39,7 +39,7 @@ class CustomTextField extends StatelessWidget {
             cursorColor: ThemeColors.white,
             decoration: InputDecoration(
               filled: true,
-              fillColor: ThemeColors.blue2,
+              fillColor: ThemeColors.blue1,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
                 borderSide: BorderSide.none,

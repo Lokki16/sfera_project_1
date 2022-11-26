@@ -2,6 +2,7 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 
 class DefaultBody extends StatelessWidget {
   final String title;
+  final Widget? searchTitle;
   final bool showAction;
   final double topPadding;
   final double bottomPadding;
@@ -11,6 +12,7 @@ class DefaultBody extends StatelessWidget {
   const DefaultBody({
     super.key,
     this.title = '',
+    this.searchTitle,
     this.showAction = true,
     this.topPadding = 20,
     this.bottomPadding = 20,
@@ -21,7 +23,11 @@ class DefaultBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: title, showAction: showAction),
+      appBar: CustomAppBar(
+        title: title,
+        searchTitle: searchTitle,
+        showAction: showAction,
+      ),
       body: Padding(
         padding: EdgeInsets.only(
           top: topPadding.h,
