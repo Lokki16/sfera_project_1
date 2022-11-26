@@ -117,8 +117,6 @@ class AuthorizationForm extends StatelessWidget {
                               body: CustomText(text: signUpResult.toString()));
                           logger(signUpResult.toString());
                         }
-                      } else {
-                        logger('Unable to validate sign in form!');
                       }
                     },
                     child: const CustomText(text: ConstantText.login),

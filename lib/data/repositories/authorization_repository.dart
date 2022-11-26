@@ -5,7 +5,14 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 enum AuthorizationStatus { unknown, authenticated, unauthenticated }
 
 class AuthorizationRepository {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseAuth = FirebaseAuth.instance;
+  final _controller = StreamController<AuthorizationStatus>();
+
+  Stream<AuthorizationStatus> get status async* {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    yield AuthorizationStatus.unauthenticated;
+    yield* _controller.stream;
+  }
 
   Future signInState() async => _firebaseAuth.isSignedIn;
 
@@ -14,8 +21,8 @@ class AuthorizationRepository {
   Future signIn(String email, String pass) async {
     try {
       await _firebaseAuth.signIn(email, pass);
-      var user = await _firebaseAuth.getUser();
-      return user;
+      _controller.add(AuthorizationStatus.authenticated);
+      return await _firebaseAuth.getUser();
     } catch (e) {
       logger(e.toString());
     }
@@ -24,12 +31,14 @@ class AuthorizationRepository {
   Future signUp(String email, String pass) async {
     try {
       await _firebaseAuth.signUp(email, pass);
-      var user = await _firebaseAuth.getUser();
-      return user;
+      _controller.add(AuthorizationStatus.unauthenticated);
+      return await _firebaseAuth.getUser();
     } catch (e) {
-      logger(Exception(e.toString()));
+      logger(e.toString());
     }
   }
 
   Future signOut() async => _firebaseAuth.signOut();
+
+  void dispose() => _controller.close();
 }

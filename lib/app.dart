@@ -13,7 +13,7 @@ class SferaApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AuthorizationBloc(
-              authenticationRepository: authorizationRepository),
+              authorizationRepository: authorizationRepository),
         ),
         BlocProvider(
             create: (context) =>

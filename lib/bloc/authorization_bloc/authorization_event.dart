@@ -25,3 +25,7 @@ class AuthorizationPasswordChanged extends AuthorizationEvent {
   @override
   List<Object> get props => [password];
 }
+
+class AuthorizationSubmitted extends AuthorizationEvent {
+  const AuthorizationSubmitted();
+}
