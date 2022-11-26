@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         return Column(
           children: [
             CustomTextField(
-                iCon: const Icon(Icons.search, color: Colors.white),
+                icon: const Icon(Icons.search, color: Colors.white),
                 onChanged: (value) {
                   currentPage = 1;
                   currentResults = [];

@@ -22,8 +22,8 @@ class AuthorizationPage extends StatelessWidget {
             SizedBox(height: 5.h),
             TextButton(
               child: const CustomText(text: ConstantText.register),
-              onPressed: () =>
-                Navigator.of(context).pushNamed(AppRoutes.routeToRegistration),             
+              onPressed: () => Navigator.of(context)
+                  .pushNamed(AppRoutes.routeToRegistration),
             ),
             SizedBox(height: 25.h),
           ],
@@ -73,7 +73,7 @@ class _AuthorizationFormState extends State<AuthorizationForm> {
             controller: emailController,
             onChanged: (value) => setState(() => email = value),
             validator: (value) => Validator.loginEmailValidator(value),
-            iCon: const Icon(Icons.account_box, color: Colors.white),
+            icon: const Icon(Icons.account_box, color: Colors.white),
           ),
           SizedBox(height: 20.h),
           const CustomText(
@@ -86,7 +86,7 @@ class _AuthorizationFormState extends State<AuthorizationForm> {
             obscureText: true,
             onChanged: (value) => setState(() => password = value),
             validator: (value) => Validator.loginPasswordValidator(value),
-            iCon: const Icon(Icons.lock, color: Colors.white),
+            icon: const Icon(Icons.lock, color: Colors.white),
           ),
           SizedBox(height: 25.h),
           Row(
