@@ -18,12 +18,12 @@ class RegistrationPage extends StatelessWidget {
             child: SpacedColumn(
               children: [
                 const EmailInput(
-                  key: ValueKey("emailfield"),
+                  key: Key("emailfield"),
                 ),
-                const PasswordInput(key: ValueKey("passwordfield")),
+                const PasswordInput(key: Key("passwordfield")),
                 SignUpButton(
                   signUpFormKey: signUpFormKey,
-                  key: const ValueKey("signup_button"),
+                  key: const Key("signup_button"),
                 ),
               ],
             ),

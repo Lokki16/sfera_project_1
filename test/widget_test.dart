@@ -17,8 +17,8 @@ void main() {
     await tester.enterText(addUser, randomUser);
     await tester.enterText(addPassword, randonPassword);
     await tester.tap(findTapButtonSignUp);
-    await tester.pumpWidget(const MaterialApp(home: HomePage()));
-    await tester.pump();
+
+    expect(find.text('Rick'), findsWidgets);
 
 //expect(actual, matcher)
   });
