@@ -6,7 +6,7 @@ class LanguagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: 'Languages',
+      title: ConstantText.languages,
       showAction: false,
       child: SpacedColumn(
         space: 12,
@@ -46,10 +46,7 @@ class BuildSettingsTile extends StatelessWidget {
       child: SpacedRow(
         space: 2.w,
         children: [
-          CustomText(
-            text: text,
-            textStyle: ThemeTextSemibold.s20,
-          ),
+          CustomText(text: text),
         ],
       ),
     );

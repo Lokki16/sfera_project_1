@@ -6,7 +6,7 @@ class Japanese {
     ConstantText.changeTheme: 'テーマを変更',
     ConstantText.back: '戻る',
     ConstantText.forNewUser: '新規ユーザーの場合は、登録が必要です',
-    ConstantText.register: '登録',
+    ConstantText.signUp: '登録',
     ConstantText.verificationToContinue: '続行するには認証を受ける必要があります',
     ConstantText.passVerification: '合格確認',
     ConstantText.email: 'Eメール',
@@ -19,5 +19,10 @@ class Japanese {
     ConstantText.light: '光',
     ConstantText.dark: '暗い',
     ConstantText.settings: '設定',
+    ConstantText.googleSignIn: 'Google でサインイン',
+    ConstantText.error: 'エラー',
+    ConstantText.loading: '読み込んでいます...',
+    ConstantText.languages: '言語',
+    ConstantText.themes: 'テーマ',
   };
 }

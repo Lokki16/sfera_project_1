@@ -6,7 +6,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: 'Settings',
+      title: ConstantText.settings,
       showAction: false,
       child: SpacedColumn(
         space: 5.h,

@@ -1,6 +1,7 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 showSimpleDialog({
+  String? title,
   String? buttonText,
   bool barrierDismissible = true,
   AlignmentGeometry? alignment,
@@ -24,6 +25,7 @@ showSimpleDialog({
       return WillPopScope(
         onWillPop: onWillPop,
         child: PopupLayout(
+          title: title != null ? CustomText(text: title) : null,
           alignment: alignment,
           borderRadius: borderRadius,
           topPadding: topPadding,

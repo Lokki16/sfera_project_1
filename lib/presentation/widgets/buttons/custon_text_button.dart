@@ -18,10 +18,7 @@ class CustomTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: SizedBox(
         height: height.h,
-        child: CustomText(
-          text: text,
-          textStyle: ThemeTextSemibold.s20,
-        ),
+        child: CustomText(text: text),
       ),
     );
   }

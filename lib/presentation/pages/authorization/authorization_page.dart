@@ -15,19 +15,16 @@ class AuthorizationPage extends StatelessWidget {
         children: [
           AuthorizationForm(),
           CustomButton(
-            text: 'Авторизироваться с помощью Google',
+            text: ConstantText.googleSignIn,
             onPressed: () {},
           ),
           SpacedRow(
             space: 5,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CustomText(
-                text: ConstantText.forNewUser,
-                textStyle: ThemeTextSemibold.s20,
-              ),
+              const CustomText(text: ConstantText.forNewUser),
               CustomTextButton(
-                text: ConstantText.register,
+                text: ConstantText.signUp,
                 onPressed: () => Navigator.of(context)
                     .pushNamed(AppRoutes.routeToRegistrationPage),
               ),
@@ -122,16 +119,11 @@ class SignInButton extends StatelessWidget {
 
               if (signUpResult != null &&
                   !signUpResult.toString().contains('AuthException:')) {
-                logger('SignIn Success');
                 Get.toNamed(AppRoutes.routeToHomePage);
               } else {
                 showSimpleDialog(
-                  body: CustomText(
-                    text: signUpResult.toString(),
-                    textStyle: ThemeTextSemibold.s20,
-                  ),
+                  body: CustomText(text: signUpResult.toString()),
                 );
-                logger(signUpResult);
               }
             }
           },

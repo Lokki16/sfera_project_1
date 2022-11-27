@@ -7,7 +7,7 @@ class Russian {
     ConstantText.back: 'Назад',
     ConstantText.forNewUser:
         'Если вы новый пользователь, то необходимо пройти регистрацию',
-    ConstantText.register: 'Зарегестрироваться',
+    ConstantText.signUp: 'Регистрация',
     ConstantText.verificationToContinue:
         'Для того, чтобы продолжить нужно пройти верификацию',
     ConstantText.passVerification: 'Пройти верификацию',
@@ -21,5 +21,10 @@ class Russian {
     ConstantText.light: 'Светлая',
     ConstantText.dark: 'Темная',
     ConstantText.settings: 'Настройки',
+    ConstantText.googleSignIn: 'Авторизироваться с помощью Google',
+    ConstantText.error: 'Ошибка',
+    ConstantText.loading: 'Загрузка...',
+    ConstantText.languages: 'Языки',
+    ConstantText.themes: 'Темы',
   };
 }

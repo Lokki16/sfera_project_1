@@ -3,7 +3,7 @@ class ConstantText {
   static const changeTheme = 'change_theme';
   static const back = 'back';
   static const forNewUser = 'for_new_user';
-  static const register = 'register';
+  static const signUp = 'sign_up';
   static const verificationToContinue = 'verification_to_continue';
   static const passVerification = 'pass_verification';
   static const email = 'email';
@@ -17,4 +17,9 @@ class ConstantText {
   static const dark = 'dark';
   static const settings = 'settings';
   static const search = 'search';
+  static const googleSignIn = 'google_sign_in';
+  static const error = 'error';
+  static const loading = 'loading';
+  static const languages = 'languages';
+  static const themes = 'themes';
 }

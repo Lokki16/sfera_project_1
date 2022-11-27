@@ -6,7 +6,7 @@ class English {
     ConstantText.changeTheme: 'Change theme',
     ConstantText.back: 'Back',
     ConstantText.forNewUser: 'If you are a new user, you must register',
-    ConstantText.register: 'Register',
+    ConstantText.signUp: 'Sign up',
     ConstantText.verificationToContinue: 'You need to be verified to continue',
     ConstantText.passVerification: 'Pass verification',
     ConstantText.email: 'Email',
@@ -19,5 +19,10 @@ class English {
     ConstantText.light: 'Light',
     ConstantText.dark: 'Dark',
     ConstantText.settings: 'Settings',
+    ConstantText.googleSignIn: 'Sign in with Google',
+    ConstantText.error: 'Error',
+    ConstantText.loading: 'Loading...',
+    ConstantText.languages: 'Languages',
+    ConstantText.themes: 'Themes',
   };
 }

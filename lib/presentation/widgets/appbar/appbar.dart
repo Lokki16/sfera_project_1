@@ -19,19 +19,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: searchTitle ??
-          CustomText(
-            text: title,
-            textStyle: ThemeTextSemibold.s20,
-          ),
+      title: searchTitle ?? CustomText(text: title),
       leading: back ? null : const SizedBox.shrink(),
-      // leading: Padding(
-      //   padding: EdgeInsets.only(left: 16.w),
-      //   child: CustomIcon(
-      //     icon: Icons.arrow_back,
-      //     onTap: () => Navigator.of(context).pop(),
-      //   ),
-      // ),
       actions: [
         if (showAction)
           Padding(

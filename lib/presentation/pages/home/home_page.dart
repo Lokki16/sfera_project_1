@@ -48,10 +48,7 @@ class _HomePageState extends State<HomePage> {
                     ? Loaded(currentResults: currentResults)
                     : const SizedBox.shrink();
               },
-              error: () => const CustomText(
-                text: 'Error',
-                textStyle: ThemeTextSemibold.s20,
-              ),
+              error: () => const CustomText(text: ConstantText.error),
             ),
           ),
         );
@@ -72,10 +69,7 @@ class Loading extends StatelessWidget {
         space: 5,
         children: [
           CircularProgressIndicator(strokeWidth: 2.w),
-          const CustomText(
-            text: 'Loading...',
-            textStyle: ThemeTextSemibold.s20,
-          ),
+          const CustomText(text: ConstantText.loading),
         ],
       ),
     );

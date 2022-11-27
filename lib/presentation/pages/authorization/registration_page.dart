@@ -9,7 +9,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: 'Sign up',
+      title: ConstantText.signUp,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -41,7 +41,7 @@ class SignUpButton extends StatelessWidget {
     return BlocBuilder<AuthorizationBloc, AuthorizationState>(
       builder: (context, state) {
         return CustomButton(
-          text: 'Sign up',
+          text: ConstantText.signUp,
           onPressed: () async {
             if (signUpFormKey.currentState!.validate()) {
               final signUpResult = await authorizationRepository.signUp(
@@ -49,7 +49,6 @@ class SignUpButton extends StatelessWidget {
 
               if (signUpResult != null &&
                   !signUpResult.toString().contains('AuthException:')) {
-                logger('SignIn Success');
                 Get.toNamed(AppRoutes.routeToHomePage);
               }
             }

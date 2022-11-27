@@ -24,7 +24,6 @@ class PopupLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleDialog(
       title: title,
-      titleTextStyle: ThemeTextSemibold.s20,
       alignment: alignment,
       insetPadding: EdgeInsets.symmetric(horizontal: 25.w),
       contentPadding: EdgeInsets.only(
