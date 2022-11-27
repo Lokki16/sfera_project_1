@@ -7,43 +7,41 @@ class CharacterInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Expanded(child: CustomImage(image: character.image)),
-          Expanded(
-            child: Column(
+    return Row(
+      children: [
+        CustomImage(
+          image: character.image,
+          width: 50,
+          height: 100,
+        ),
+        SpacedColumn(
+          space: 10,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomText(text: character.name),
+            CharacterStatus(status: character.status),
+            SpacedRow(
+              space: 30,
               children: [
-                CustomText(text: character.name),
-                SizedBox(height: 3.h),
-                CharacterStatus(status: character.status),
-                SizedBox(height: 5.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                SpacedColumn(
+                  space: 5,
                   children: [
-                    SpacedColumn(
-                      space: 5,
-                      children: [
-                        const CustomText(text: ConstantText.species),
-                        CustomText(text: character.species),
-                      ],
-                    ),
-                    SpacedColumn(
-                      space: 5,
-                      children: [
-                        const CustomText(text: ConstantText.gender),
-                        CustomText(text: character.gender),
-                      ],
-                    ),
+                    const CustomText(text: ConstantText.species),
+                    CustomText(text: character.species),
                   ],
-                )
+                ),
+                SpacedColumn(
+                  space: 5,
+                  children: [
+                    const CustomText(text: ConstantText.gender),
+                    CustomText(text: character.gender),
+                  ],
+                ),
               ],
-            ),
-          )
-        ],
-      ),
+            )
+          ],
+        )
+      ],
     );
   }
 }
@@ -55,7 +53,9 @@ class CharacterStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return SpacedRow(
+      space: 5,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomIcon(
           icon: Icons.circle,
@@ -66,7 +66,6 @@ class CharacterStatus extends StatelessWidget {
                   ? ThemeColors.red
                   : ThemeColors.white,
         ),
-        SizedBox(width: 6.w),
         CustomText(text: capitalize(status)),
       ],
     );
