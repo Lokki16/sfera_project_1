@@ -24,6 +24,7 @@ class AuthorizationPage extends StatelessWidget {
             children: [
               const CustomText(text: ConstantText.forNewUser),
               CustomTextButton(
+                key: const Key("route_reg"),
                 text: ConstantText.signUp,
                 onPressed: () => Navigator.of(context)
                     .pushNamed(AppRoutes.routeToRegistrationPage),
