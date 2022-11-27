@@ -7,22 +7,26 @@ class AuthorizationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: ConstantText.enterInAccount,
+      title: ConstantText.signIn,
       back: false,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AuthorizationForm(),
           SizedBox(height: 25.h),
-          const CustomText(
-            text: ConstantText.forNewUser,
-            textStyle: ThemeTextSemibold.s20,
-          ),
-          SizedBox(height: 5.h),
-          TextButton(
-            child: const CustomText(text: ConstantText.register),
-            onPressed: () => Navigator.of(context)
-                .pushNamed(AppRoutes.routeToRegistrationPage),
+          SpacedRow(
+            space: 5,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CustomText(
+                text: ConstantText.forNewUser,
+                textStyle: ThemeTextSemibold.s20,
+              ),
+              CustomTextButton(
+                text: ConstantText.register,
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.routeToRegistrationPage),
+              ),
+            ],
           ),
         ],
       ),
@@ -33,19 +37,17 @@ class AuthorizationPage extends StatelessWidget {
 class AuthorizationForm extends StatelessWidget {
   AuthorizationForm({super.key});
 
-  final loginFormKey = GlobalKey<FormState>();
+  final signInFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: loginFormKey,
+      key: signInFormKey,
       child: SpacedColumn(
-        space: 20,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const EmailInput(),
           const PasswordInput(),
-          LoginButton(loginFormKey: loginFormKey),
+          SignInButton(signInFormKey: signInFormKey),
         ],
       ),
     );
@@ -63,7 +65,7 @@ class EmailInput extends StatelessWidget {
         return CustomTextField(
           nameField: ConstantText.username,
           icon: Icons.account_box,
-          validator: (email) => Validator.loginEmailValidator(email),
+          validator: (email) => Validator.signInEmailValidator(email),
           onChanged: (email) => context
               .read<AuthorizationBloc>()
               .add(AuthorizationEmailChanged(email)),
@@ -85,7 +87,7 @@ class PasswordInput extends StatelessWidget {
           nameField: ConstantText.password,
           icon: Icons.lock,
           obscureText: true,
-          validator: (password) => Validator.loginPasswordValidator(password),
+          validator: (password) => Validator.signInPasswordValidator(password),
           onChanged: (password) => context
               .read<AuthorizationBloc>()
               .add(AuthorizationPasswordChanged(password)),
@@ -95,10 +97,10 @@ class PasswordInput extends StatelessWidget {
   }
 }
 
-class LoginButton extends StatelessWidget {
-  final GlobalKey<FormState> loginFormKey;
+class SignInButton extends StatelessWidget {
+  final GlobalKey<FormState> signInFormKey;
 
-  LoginButton({super.key, required this.loginFormKey});
+  SignInButton({super.key, required this.signInFormKey});
 
   final authorizationRepository = AuthorizationRepository();
 
@@ -106,15 +108,10 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthorizationBloc, AuthorizationState>(
       builder: (context, state) {
-        return TextButton(
-          style: ButtonStyle(
-            backgroundColor: const MaterialStatePropertyAll(ThemeColors.blue2),
-            foregroundColor: const MaterialStatePropertyAll(ThemeColors.white),
-            padding: MaterialStatePropertyAll(
-                EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h)),
-          ),
+        return CustomButton(
+          text: ConstantText.signIn,
           onPressed: () async {
-            if (loginFormKey.currentState!.validate()) {
+            if (signInFormKey.currentState!.validate()) {
               final signUpResult = await authorizationRepository.signIn(
                   state.email, state.password);
 
@@ -124,18 +121,15 @@ class LoginButton extends StatelessWidget {
                 Get.toNamed(AppRoutes.routeToHomePage);
               } else {
                 showSimpleDialog(
-                    body: CustomText(
-                  text: signUpResult.toString(),
-                  textStyle: ThemeTextSemibold.s20,
-                ));
-                logger(signUpResult.toString());
+                  body: CustomText(
+                    text: signUpResult.toString(),
+                    textStyle: ThemeTextSemibold.s20,
+                  ),
+                );
+                logger(signUpResult);
               }
             }
           },
-          child: const CustomText(
-            text: ConstantText.login,
-            textStyle: ThemeTextSemibold.s20,
-          ),
         );
       },
     );

@@ -6,7 +6,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: ConstantText.enterInAccount,
+      title: ConstantText.signIn,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.h),
         child: Column(
@@ -18,7 +18,7 @@ class RegistrationPage extends StatelessWidget {
             ),
             SizedBox(height: 5.h),
             CustomTextField(
-              validator: (value) => Validator.loginEmailValidator(value),
+              validator: (value) => Validator.signInEmailValidator(value),
             ),
             SizedBox(height: 20.h),
             const CustomText(
@@ -28,7 +28,7 @@ class RegistrationPage extends StatelessWidget {
             SizedBox(height: 5.h),
             CustomTextField(
               obscureText: true,
-              validator: (value) => Validator.loginPasswordValidator(value),
+              validator: (value) => Validator.signInPasswordValidator(value),
             ),
             SizedBox(height: 25.h),
             Row(

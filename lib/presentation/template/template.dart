@@ -55,6 +55,7 @@ export '../widgets/custom_image/custom_image.dart';
 export '../widgets/custom_text/custom_text.dart';
 export '../widgets/custom_text_field/custom_text_field.dart';
 export '../widgets/buttons/custom_button.dart';
+export '../widgets/buttons/custon_text_button.dart';
 export '../widgets/appbar/appbar.dart';
 export '../widgets/modals/show_simple_dialog.dart';
 export '../widgets/modals/popup_layout.dart';

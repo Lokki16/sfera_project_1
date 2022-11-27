@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class Validator {
-  static String? loginEmailValidator(String? value) {
+  static String? signInEmailValidator(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Enter your email';
     } else if (!value.isEmail) {
@@ -11,7 +11,7 @@ class Validator {
     }
   }
 
-  static String? loginPasswordValidator(String? value) {
+  static String? signInPasswordValidator(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Enter your password';
     } else if (value.length < 6) {

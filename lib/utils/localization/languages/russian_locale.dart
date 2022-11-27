@@ -5,7 +5,6 @@ class Russian {
     ConstantText.changeLanguage: 'Изменить язык',
     ConstantText.changeTheme: 'Изменить тему',
     ConstantText.back: 'Назад',
-    ConstantText.enterInAccount: 'Войти в аккаунт',
     ConstantText.forNewUser:
         'Если вы новый пользователь, то необходимо пройти регистрацию',
     ConstantText.register: 'Зарегестрироваться',
@@ -14,7 +13,7 @@ class Russian {
     ConstantText.passVerification: 'Пройти верификацию',
     ConstantText.username: 'Имя пользователя',
     ConstantText.password: 'Пароль',
-    ConstantText.login: 'Войти',
+    ConstantText.signIn: 'Войти',
     ConstantText.resetPassword: 'Сбросить пароль',
     ConstantText.russian: 'Русский',
     ConstantText.english: 'Английский',
