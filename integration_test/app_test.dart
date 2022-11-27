@@ -8,27 +8,31 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   group('App_test', () {
     testWidgets('full_app_test', (tester) async {
-      app.main();
-      await tester.pumpAndSettle();
-      final findTapButtonRouteReg = find.byKey(const Key("route_reg"));
-      final addUser = find.byKey(const Key('emailfield'));
-      final addPassword = find.byKey(const Key('passwordfield'));
-      final findTapButtonSignUp = find.byKey(const Key('signup_button'));
+      await tester.runAsync(() async {
+        app.main();
+        await tester.pumpAndSettle();
+        final findTapButtonRouteReg = find.byKey(const Key("route_reg"));
+        final addUser = find.byKey(const Key('emailfield'));
+        final addPassword = find.byKey(const Key('passwordfield'));
+        final findTapButtonSignUp = find.byKey(const Key('signup_button'));
 
-      final randomUser = '${getRandomString(5)}@gmail.com';
-      final randonPassword = getRandomString(6);
+        final randomUsermail = '${getRandomString(5)}@gmail.com';
+        final randonPassword = getRandomString(6);
 
-      await tester.tap(findTapButtonRouteReg);
-      await tester.pumpAndSettle();
+        await tester.tap(findTapButtonRouteReg);
+        await tester.pumpAndSettle();
 
-      /*await tester.pumpAndSettle();
-      await tester.tap(findTapButtonRouteReg);
-      await tester.pumpAndSettle();*/
+        await tester.enterText(addUser, randomUsermail);
+        await tester.enterText(addPassword, randonPassword);
+        await tester.pumpAndSettle();
 
-      //expect(find.text('Регистрация'), findsWidgets);
-      await tester.enterText(addUser, randomUser);
-      await tester.enterText(addPassword, randonPassword);
-      await tester.tap(findTapButtonSignUp);
+        await tester.tap(findTapButtonSignUp);
+        await tester.pumpAndSettle();
+
+        /*final name = randomUsermail.split('@');
+
+        expect(find.text(name[0]), findsOneWidget);*/
+      });
     });
   });
 }
