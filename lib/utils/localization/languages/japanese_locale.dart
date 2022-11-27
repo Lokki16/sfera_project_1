@@ -25,5 +25,7 @@ class Japanese {
     ConstantText.languages: '言語',
     ConstantText.themes: 'テーマ',
     ConstantText.signOut: 'サインアウト',
+    ConstantText.species: '種族：',
+    ConstantText.gender: '性別：',
   };
 }

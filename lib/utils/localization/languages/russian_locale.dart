@@ -27,5 +27,7 @@ class Russian {
     ConstantText.languages: 'Языки',
     ConstantText.themes: 'Темы',
     ConstantText.signOut: 'Выйти',
+    ConstantText.species: 'Разновидность:',
+    ConstantText.gender: 'Пол:',
   };
 }

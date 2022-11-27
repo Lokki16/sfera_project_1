@@ -26,14 +26,14 @@ class CharacterInfoCard extends StatelessWidget {
                     SpacedColumn(
                       space: 5,
                       children: [
-                        const CustomText(text: 'Species:'),
+                        const CustomText(text: ConstantText.species),
                         CustomText(text: character.species),
                       ],
                     ),
                     SpacedColumn(
                       space: 5,
                       children: [
-                        const CustomText(text: 'Gender:'),
+                        const CustomText(text: ConstantText.gender),
                         CustomText(text: character.gender),
                       ],
                     ),
@@ -61,9 +61,9 @@ class CharacterStatus extends StatelessWidget {
           icon: Icons.circle,
           size: 20,
           color: status == 'Alive'
-              ? Colors.green
+              ? ThemeColors.green
               : status == 'Dead'
-                  ? Colors.red
+                  ? ThemeColors.red
                   : ThemeColors.white,
         ),
         SizedBox(width: 6.w),

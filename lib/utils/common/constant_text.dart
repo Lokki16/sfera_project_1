@@ -23,4 +23,6 @@ class ConstantText {
   static const languages = 'languages';
   static const themes = 'themes';
   static const signOut = 'sign_out';
+  static const species = 'species';
+  static const gender = 'gender';
 }

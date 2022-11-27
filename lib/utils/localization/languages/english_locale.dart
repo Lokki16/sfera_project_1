@@ -25,5 +25,7 @@ class English {
     ConstantText.languages: 'Languages',
     ConstantText.themes: 'Themes',
     ConstantText.signOut: 'Sign out',
+    ConstantText.species: 'Species:',
+    ConstantText.gender: 'Gender:',
   };
 }
