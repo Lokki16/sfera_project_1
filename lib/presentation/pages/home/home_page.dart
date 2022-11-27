@@ -27,7 +27,6 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<CharacterBloc, CharacterState>(
       builder: (context, state) {
         return DefaultBody(
-          topPadding: 40,
           back: false,
           searchTitle: CustomTextField(
             width: context.mediaQuery.size.width / 1.5,
@@ -85,14 +84,14 @@ class Loaded extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      mainAxisSpacing: 10,
+      crossAxisSpacing: 10,
       crossAxisCount: 2,
+      childAspectRatio: 6,
       shrinkWrap: true,
       children: List.generate(currentResults.length, (index) {
         final character = currentResults[index];
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 16.h),
-          child: ListTile(title: CharacterInfoCard(character: character)),
-        );
+        return CharacterInfoCard(character: character);
       }),
     );
   }
