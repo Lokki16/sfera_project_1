@@ -8,7 +8,7 @@ class ThemesPage extends StatelessWidget {
     return DefaultBody(
       topPadding: 50,
       title: ConstantText.themes,
-      showAction: false,
+      showSettings: false,
       child: Center(
         child: SpacedColumn(
           space: 12,

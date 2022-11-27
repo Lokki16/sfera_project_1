@@ -9,10 +9,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final authorizationRepository = AuthorizationRepository();
+  bool isSignedIn = false;
+  String userMail = '';
+  String userName = '';
+
   List<CharacterResultsModel> currentResults = [];
 
   @override
   void initState() {
+    setUserActionMenu();
+
     if (currentResults.isEmpty) {
       context
           .read<CharacterBloc>()
@@ -28,8 +35,9 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return DefaultBody(
           back: false,
+          showProfile: userName,
           searchTitle: CustomTextField(
-            width: context.mediaQuery.size.width / 1.5,
+            width: context.mediaQuery.size.width / 2,
             height: 52,
             icon: Icons.search,
             onChanged: (value) {
@@ -54,6 +62,19 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+  setUserActionMenu() {
+    authorizationRepository.signInState().then((value) => setState(() {
+          isSignedIn = value;
+          if (isSignedIn) {
+            authorizationRepository.currentUser().then((value) {
+              userMail = value.email;
+              final emailArray = userMail.split('@');
+              userName = emailArray[0];
+            });
+          }
+        }));
   }
 }
 

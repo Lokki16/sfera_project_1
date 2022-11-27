@@ -9,11 +9,7 @@ class CharacterInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomImage(
-          image: character.image,
-          width: 50,
-          height: 100,
-        ),
+        CustomImage(image: character.image, width: 50, height: 100),
         SpacedColumn(
           space: 10,
           mainAxisAlignment: MainAxisAlignment.center,
