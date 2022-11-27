@@ -6,26 +6,30 @@ class ThemesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
+      topPadding: 50,
       title: ConstantText.themes,
       showAction: false,
-      child: SpacedColumn(
-        space: 12,
-        children: [
-          BuildSettingsTile(
-            text: ConstantText.light,
-            onTap: () {
-              Get.changeThemeMode(ThemeMode.light);
-              Get.changeTheme(SferaAppTheme.lightTheme);
-            },
-          ),
-          BuildSettingsTile(
-            text: ConstantText.dark,
-            onTap: () {
-              Get.changeThemeMode(ThemeMode.dark);
-              Get.changeTheme(SferaAppTheme.darkTheme);
-            },
-          ),
-        ],
+      child: Center(
+        child: SpacedColumn(
+          space: 12,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Get.changeThemeMode(ThemeMode.light);
+                Get.changeTheme(SferaAppTheme.lightTheme);
+              },
+              child: const CustomText(text: ConstantText.light),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.changeThemeMode(ThemeMode.dark);
+                Get.changeTheme(SferaAppTheme.darkTheme);
+              },
+              child: const CustomText(text: ConstantText.dark),
+            ),
+          ],
+        ),
       ),
     );
   }

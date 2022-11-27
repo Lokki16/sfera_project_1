@@ -16,7 +16,8 @@ class CustomIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      mouseCursor: MouseCursor.defer,
       onTap: onTap,
       child: Icon(icon, color: color, size: size),
     );

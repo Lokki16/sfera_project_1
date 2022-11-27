@@ -21,11 +21,6 @@ class CustomButton extends StatelessWidget {
       height: height.h,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ThemeColors.blue2,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
-        ),
         child: CustomText(text: text),
       ),
     );

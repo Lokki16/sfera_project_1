@@ -26,5 +26,6 @@ class Russian {
     ConstantText.loading: 'Загрузка...',
     ConstantText.languages: 'Языки',
     ConstantText.themes: 'Темы',
+    ConstantText.signOut: 'Выйти',
   };
 }

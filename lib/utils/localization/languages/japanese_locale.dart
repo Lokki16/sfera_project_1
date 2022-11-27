@@ -24,5 +24,6 @@ class Japanese {
     ConstantText.loading: '読み込んでいます...',
     ConstantText.languages: '言語',
     ConstantText.themes: 'テーマ',
+    ConstantText.signOut: 'サインアウト',
   };
 }

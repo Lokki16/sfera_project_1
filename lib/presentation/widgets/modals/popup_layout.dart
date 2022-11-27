@@ -3,9 +3,12 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 class PopupLayout extends StatelessWidget {
   final Widget? title;
   final AlignmentGeometry? alignment;
-  final double topPadding;
-  final double bottomPadding;
-  final double horizontalPadding;
+  final double titleTopPadding;
+  final double titleBottomPadding;
+  final double titleHorizontalPadding;
+  final double contentTopPadding;
+  final double contentBottomPadding;
+  final double contentHorizontalPadding;
   final double borderRadius;
   final List<Widget> children;
 
@@ -13,9 +16,12 @@ class PopupLayout extends StatelessWidget {
     super.key,
     this.title,
     this.alignment,
-    this.topPadding = 32,
-    this.bottomPadding = 32,
-    this.horizontalPadding = 64,
+    required this.titleTopPadding,
+    required this.titleBottomPadding,
+    required this.titleHorizontalPadding,
+    required this.contentTopPadding,
+    required this.contentBottomPadding,
+    required this.contentHorizontalPadding,
     this.borderRadius = 0,
     required this.children,
   });
@@ -26,13 +32,18 @@ class PopupLayout extends StatelessWidget {
       title: title,
       alignment: alignment,
       insetPadding: EdgeInsets.symmetric(horizontal: 25.w),
-      contentPadding: EdgeInsets.only(
-        top: topPadding.h,
-        bottom: bottomPadding.h,
-        left: horizontalPadding.w,
-        right: horizontalPadding.w,
+      titlePadding: EdgeInsets.only(
+        top: titleTopPadding.h,
+        bottom: titleBottomPadding.h,
+        left: titleHorizontalPadding.w,
+        right: titleHorizontalPadding.w,
       ),
-      titlePadding: EdgeInsets.zero,
+      contentPadding: EdgeInsets.only(
+        top: contentTopPadding.h,
+        bottom: contentBottomPadding.h,
+        left: contentHorizontalPadding.w,
+        right: contentHorizontalPadding.w,
+      ),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius.r)),
       elevation: 0,

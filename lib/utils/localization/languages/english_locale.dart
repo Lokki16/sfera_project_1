@@ -24,5 +24,6 @@ class English {
     ConstantText.loading: 'Loading...',
     ConstantText.languages: 'Languages',
     ConstantText.themes: 'Themes',
+    ConstantText.signOut: 'Sign out',
   };
 }

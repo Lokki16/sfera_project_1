@@ -18,6 +18,13 @@ class SferaAppTheme {
           headline1: ThemeTextSemibold.s20.copyWith(color: ThemeColors.black),
           headline2: ThemeTextSemibold.s20.copyWith(color: ThemeColors.black),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: ThemeColors.blue2,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.r)),
+          ),
+        ),
       );
 
   static ThemeData get darkTheme => ThemeData(
@@ -36,6 +43,13 @@ class SferaAppTheme {
           subtitle2: ThemeTextSemibold.s20.copyWith(color: ThemeColors.white),
           headline1: ThemeTextSemibold.s20.copyWith(color: ThemeColors.white),
           headline2: ThemeTextSemibold.s20.copyWith(color: ThemeColors.white),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: ThemeColors.blue2,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.r)),
+          ),
         ),
       );
 }

@@ -68,9 +68,8 @@ class EmailInput extends StatelessWidget {
           nameField: ConstantText.email,
           icon: Icons.account_box,
           validator: (email) => Validator.signInEmailValidator(email),
-          onChanged: (email) => context
-              .read<AuthorizationBloc>()
-              .add(AuthorizationEmailChanged(email)),
+          onChanged: (email) =>
+              context.read<AuthorizationBloc>().add(EmailChange(email)),
         );
       },
     );
@@ -90,9 +89,8 @@ class PasswordInput extends StatelessWidget {
           icon: Icons.lock,
           obscureText: true,
           validator: (password) => Validator.signInPasswordValidator(password),
-          onChanged: (password) => context
-              .read<AuthorizationBloc>()
-              .add(AuthorizationPasswordChanged(password)),
+          onChanged: (password) =>
+              context.read<AuthorizationBloc>().add(PasswordChange(password)),
         );
       },
     );
@@ -122,6 +120,24 @@ class SignInButton extends StatelessWidget {
                 Get.toNamed(AppRoutes.routeToHomePage);
               } else {
                 showSimpleDialog(
+                  titleTopPadding: 16,
+                  titleBottomPadding: 10,
+                  contentTopPadding: 10,
+                  contentBottomPadding: 16,
+                  contentHorizontalPadding: 10,
+                  title: const SpacedRow(
+                    space: 2,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomIcon(
+                        icon: Icons.error,
+                        color: ThemeColors.red,
+                        size: 20,
+                      ),
+                      CustomText(text: ConstantText.error),
+                    ],
+                  ),
                   body: CustomText(text: signUpResult.toString()),
                 );
               }

@@ -10,48 +10,37 @@ class CharacterInfoCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          CustomImage(image: character.image),
-          Column(
-            children: [
-              CustomText(
-                text: character.name,
-                textStyle: ThemeTextSemibold.s20,
-              ),
-              SizedBox(height: 3.h),
-              CharacterStatus(status: character.status),
-              SizedBox(height: 5.h),
-              Row(
-                children: [
-                  SpacedColumn(
-                    space: 5,
-                    children: [
-                      const CustomText(
-                        text: 'Species:',
-                        textStyle: ThemeTextSemibold.s20,
-                      ),
-                      CustomText(
-                        text: character.species,
-                        textStyle: ThemeTextSemibold.s20,
-                      ),
-                    ],
-                  ),
-                  SpacedColumn(
-                    space: 5,
-                    children: [
-                      const CustomText(
-                        text: 'Gender:',
-                        textStyle: ThemeTextSemibold.s20,
-                      ),
-                      CustomText(
-                        text: character.gender,
-                        textStyle: ThemeTextSemibold.s20,
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
+          Expanded(child: CustomImage(image: character.image)),
+          Expanded(
+            child: Column(
+              children: [
+                CustomText(text: character.name),
+                SizedBox(height: 3.h),
+                CharacterStatus(status: character.status),
+                SizedBox(height: 5.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SpacedColumn(
+                      space: 5,
+                      children: [
+                        const CustomText(text: 'Species:'),
+                        CustomText(text: character.species),
+                      ],
+                    ),
+                    SpacedColumn(
+                      space: 5,
+                      children: [
+                        const CustomText(text: 'Gender:'),
+                        CustomText(text: character.gender),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),
@@ -78,10 +67,7 @@ class CharacterStatus extends StatelessWidget {
                   : ThemeColors.white,
         ),
         SizedBox(width: 6.w),
-        CustomText(
-          text: capitalize(status),
-          textStyle: ThemeTextSemibold.s20,
-        ),
+        CustomText(text: capitalize(status)),
       ],
     );
   }

@@ -7,19 +7,19 @@ part 'authorization_state.dart';
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   AuthorizationBloc({required AuthorizationRepository authorizationRepository})
       : super(const AuthorizationState(email: '', password: '')) {
-    on<AuthorizationEmailChanged>(_authorizationEmailChanged);
-    on<AuthorizationPasswordChanged>(_authorizationPasswordChanged);
+    on<EmailChange>(_emailChanged);
+    on<PasswordChange>(_passwordChanged);
   }
 
-  void _authorizationEmailChanged(
-    AuthorizationEmailChanged event,
+  void _emailChanged(
+    EmailChange event,
     Emitter<AuthorizationState> emit,
   ) {
     emit(state.copyWith(email: event.email));
   }
 
-  void _authorizationPasswordChanged(
-    AuthorizationPasswordChanged event,
+  void _passwordChanged(
+    PasswordChange event,
     Emitter<AuthorizationState> emit,
   ) {
     emit(state.copyWith(password: event.password));

@@ -8,7 +8,7 @@ class ConstantText {
   static const passVerification = 'pass_verification';
   static const email = 'email';
   static const password = 'password';
-  static const signIn = 'enter';
+  static const signIn = 'sign_in';
   static const resetPassword = 'reset_password';
   static const russian = 'russian';
   static const english = 'english';
@@ -22,4 +22,5 @@ class ConstantText {
   static const loading = 'loading';
   static const languages = 'languages';
   static const themes = 'themes';
+  static const signOut = 'sign_out';
 }

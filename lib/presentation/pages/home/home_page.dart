@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<CharacterBloc, CharacterState>(
       builder: (context, state) {
         return DefaultBody(
+          topPadding: 40,
           back: false,
           searchTitle: CustomTextField(
             width: context.mediaQuery.size.width / 1.5,
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     ? Loaded(currentResults: currentResults)
                     : const SizedBox.shrink();
               },
-              error: () => const CustomText(text: ConstantText.error),
+              error: () => const Error(),
             ),
           ),
         );
@@ -83,17 +84,34 @@ class Loaded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: currentResults.length,
-      separatorBuilder: (_, index) => SizedBox(height: 5.h),
+    return GridView.count(
+      crossAxisCount: 2,
       shrinkWrap: true,
-      itemBuilder: (context, index) {
+      children: List.generate(currentResults.length, (index) {
         final character = currentResults[index];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 16.h),
           child: ListTile(title: CharacterInfoCard(character: character)),
         );
-      },
+      }),
+    );
+  }
+}
+
+class Error extends StatelessWidget {
+  const Error({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          CustomText(text: ConstantText.error),
+        ],
+      ),
     );
   }
 }
