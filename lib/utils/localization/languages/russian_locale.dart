@@ -11,7 +11,7 @@ class Russian {
     ConstantText.verificationToContinue:
         'Для того, чтобы продолжить нужно пройти верификацию',
     ConstantText.passVerification: 'Пройти верификацию',
-    ConstantText.username: 'Имя пользователя',
+    ConstantText.email: 'Почта',
     ConstantText.password: 'Пароль',
     ConstantText.signIn: 'Войти',
     ConstantText.resetPassword: 'Сбросить пароль',

@@ -16,8 +16,8 @@ class DefaultBody extends StatelessWidget {
     this.searchTitle,
     this.showAction = true,
     this.back = true,
-    this.topPadding = 20,
-    this.bottomPadding = 20,
+    this.topPadding = 0,
+    this.bottomPadding = 0,
     this.horizontalPadding = 16,
     required this.child,
   });

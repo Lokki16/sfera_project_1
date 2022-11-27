@@ -9,10 +9,15 @@ class AuthorizationPage extends StatelessWidget {
     return DefaultBody(
       title: ConstantText.signIn,
       back: false,
-      child: Column(
+      child: SpacedColumn(
+        space: 25,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AuthorizationForm(),
-          SizedBox(height: 25.h),
+          CustomButton(
+            text: 'Авторизироваться с помощью Google',
+            onPressed: () {},
+          ),
           SpacedRow(
             space: 5,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +68,7 @@ class EmailInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return CustomTextField(
-          nameField: ConstantText.username,
+          nameField: ConstantText.email,
           icon: Icons.account_box,
           validator: (email) => Validator.signInEmailValidator(email),
           onChanged: (email) => context

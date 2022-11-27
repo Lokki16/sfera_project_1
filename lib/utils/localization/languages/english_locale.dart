@@ -9,7 +9,7 @@ class English {
     ConstantText.register: 'Register',
     ConstantText.verificationToContinue: 'You need to be verified to continue',
     ConstantText.passVerification: 'Pass verification',
-    ConstantText.username: 'Username',
+    ConstantText.email: 'Email',
     ConstantText.password: 'Password',
     ConstantText.signIn: 'Sign in',
     ConstantText.resetPassword: 'Reset the password',

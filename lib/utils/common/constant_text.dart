@@ -6,7 +6,7 @@ class ConstantText {
   static const register = 'register';
   static const verificationToContinue = 'verification_to_continue';
   static const passVerification = 'pass_verification';
-  static const username = 'username';
+  static const email = 'email';
   static const password = 'password';
   static const signIn = 'enter';
   static const resetPassword = 'reset_password';

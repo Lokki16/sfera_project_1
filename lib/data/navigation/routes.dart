@@ -10,7 +10,7 @@ class AppRoutes {
 
   static dynamic getRoutes = {
     routeToAuthorizationPage: (context) => const AuthorizationPage(),
-    routeToRegistrationPage: (context) => const RegistrationPage(),
+    routeToRegistrationPage: (context) => RegistrationPage(),
     routeToHomePage: (context) => const HomePage(),
     routeToSettingsPage: (context) => const SettingsPage(),
     routeToLanguagesPage: (context) => const LanguagesPage(),

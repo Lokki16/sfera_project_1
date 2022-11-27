@@ -9,7 +9,7 @@ class Japanese {
     ConstantText.register: '登録',
     ConstantText.verificationToContinue: '続行するには認証を受ける必要があります',
     ConstantText.passVerification: '合格確認',
-    ConstantText.username: 'ユーザー名',
+    ConstantText.email: 'Eメール',
     ConstantText.password: 'パスワード',
     ConstantText.signIn: 'ログイン',
     ConstantText.resetPassword: 'パスワードをリセットする',

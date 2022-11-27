@@ -1,70 +1,61 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({super.key});
+  RegistrationPage({super.key});
+
+  final signUpFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: ConstantText.signIn,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomText(
-              text: ConstantText.username,
-              textStyle: ThemeTextSemibold.s20,
-            ),
-            SizedBox(height: 5.h),
-            CustomTextField(
-              validator: (value) => Validator.signInEmailValidator(value),
-            ),
-            SizedBox(height: 20.h),
-            const CustomText(
-              text: ConstantText.password,
-              textStyle: ThemeTextSemibold.s20,
-            ),
-            SizedBox(height: 5.h),
-            CustomTextField(
-              obscureText: true,
-              validator: (value) => Validator.signInPasswordValidator(value),
-            ),
-            SizedBox(height: 25.h),
-            Row(
+      title: 'Sign up',
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Form(
+            key: signUpFormKey,
+            child: SpacedColumn(
               children: [
-                TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        const MaterialStatePropertyAll(ThemeColors.blue2),
-                    foregroundColor:
-                        const MaterialStatePropertyAll(ThemeColors.white),
-                    padding: MaterialStatePropertyAll(
-                      EdgeInsets.symmetric(
-                        horizontal: 15.w,
-                        vertical: 8.h,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const CustomText(
-                    text: 'Зарегестрироваться',
-                    textStyle: ThemeTextSemibold.s20,
-                  ),
-                ),
-                SizedBox(width: 30.w),
-                TextButton(
-                  onPressed: () {},
-                  child: const CustomText(
-                    text: 'Войти с помощью Google',
-                    textStyle: ThemeTextSemibold.s20,
-                  ),
-                ),
+                const EmailInput(),
+                const PasswordInput(),
+                SignUpButton(signUpFormKey: signUpFormKey),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class SignUpButton extends StatelessWidget {
+  final GlobalKey<FormState> signUpFormKey;
+
+  SignUpButton({super.key, required this.signUpFormKey});
+
+  final authorizationRepository = AuthorizationRepository();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      builder: (context, state) {
+        return CustomButton(
+          text: 'Sign up',
+          onPressed: () async {
+            if (signUpFormKey.currentState!.validate()) {
+              final signUpResult = await authorizationRepository.signUp(
+                  state.email, state.password);
+
+              if (signUpResult != null &&
+                  !signUpResult.toString().contains('AuthException:')) {
+                logger('SignIn Success');
+                Get.toNamed(AppRoutes.routeToHomePage);
+              }
+            }
+          },
+        );
+      },
     );
   }
 }
