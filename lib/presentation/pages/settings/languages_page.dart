@@ -8,7 +8,7 @@ class LanguagesPage extends StatelessWidget {
     return DefaultBody(
       topPadding: 50,
       title: ConstantText.languages,
-      showAction: false,
+      showSettings: false,
       child: Center(
         child: SpacedColumn(
           space: 12,

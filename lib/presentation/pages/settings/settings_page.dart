@@ -10,11 +10,11 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final _firebaseAuthService = AuthorizationRepository();
+  final authorizationRepository = AuthorizationRepository();
 
   @override
   void initState() {
-    _firebaseAuthService
+    authorizationRepository
         .signInState()
         .then((value) => setState(() => isSignedIn = value));
     super.initState();
@@ -25,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return DefaultBody(
       topPadding: 50,
       title: ConstantText.settings,
-      showAction: false,
+      showSettings: false,
       child: Center(
         child: SpacedColumn(
           space: 5.h,
@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
             if (isSignedIn)
               CustomButton(
                 text: ConstantText.signOut,
-                onPressed: () => _firebaseAuthService.signInState().then(
+                onPressed: () => authorizationRepository.signInState().then(
                   (value) {
                     setState(() => isSignedIn = value);
                     AuthorizationRepository().signOut();

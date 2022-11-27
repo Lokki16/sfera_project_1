@@ -4,15 +4,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? searchTitle;
   final bool back;
-  final bool showAction;
+  final bool showSettings;
+  final String? showProfile;
   final VoidCallback? onPressed;
 
   const CustomAppBar({
     super.key,
     required this.title,
-    required this.back,
     this.searchTitle,
-    required this.showAction,
+    required this.back,
+    required this.showSettings,
+    required this.showProfile,
     this.onPressed,
   });
 
@@ -22,15 +24,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: searchTitle ?? CustomText(text: title),
       leading: back ? null : const SizedBox.shrink(),
       actions: [
-        if (showAction)
-          Padding(
-            padding: EdgeInsets.only(right: 16.w),
-            child: CustomIcon(
-              icon: Icons.settings,
-              onTap: () => Navigator.of(context)
-                  .pushNamed(AppRoutes.routeToSettingsPage),
-            ),
-          )
+        if (showProfile != null)
+          Row(
+            children: [
+              CustomText(text: showProfile!),
+              SizedBox(width: 10.w),
+            ],
+          ),
+        if (showSettings)
+          CustomIcon(
+            icon: Icons.settings,
+            onTap: () =>
+                Navigator.of(context).pushNamed(AppRoutes.routeToSettingsPage),
+          ),
+        SizedBox(width: 16.w),
       ],
     );
   }

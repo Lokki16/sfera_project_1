@@ -3,8 +3,9 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 class DefaultBody extends StatelessWidget {
   final String title;
   final Widget? searchTitle;
-  final bool showAction;
   final bool back;
+  final bool showSettings;
+  final String? showProfile;
   final double topPadding;
   final double bottomPadding;
   final double horizontalPadding;
@@ -14,8 +15,9 @@ class DefaultBody extends StatelessWidget {
     super.key,
     this.title = '',
     this.searchTitle,
-    this.showAction = true,
     this.back = true,
+    this.showSettings = true,
+    this.showProfile,
     this.topPadding = 0,
     this.bottomPadding = 0,
     this.horizontalPadding = 16,
@@ -29,7 +31,8 @@ class DefaultBody extends StatelessWidget {
         title: title,
         searchTitle: searchTitle,
         back: back,
-        showAction: showAction,
+        showSettings: showSettings,
+        showProfile: showProfile,
       ),
       body: Padding(
         padding: EdgeInsets.only(
