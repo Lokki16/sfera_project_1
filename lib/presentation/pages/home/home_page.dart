@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<CharacterBloc, CharacterState>(
       builder: (context, state) {
         return DefaultBody(
+          back: false,
           searchTitle: CustomTextField(
             width: context.mediaQuery.size.width / 1.5,
             height: 52,

@@ -4,6 +4,7 @@ class DefaultBody extends StatelessWidget {
   final String title;
   final Widget? searchTitle;
   final bool showAction;
+  final bool back;
   final double topPadding;
   final double bottomPadding;
   final double horizontalPadding;
@@ -14,6 +15,7 @@ class DefaultBody extends StatelessWidget {
     this.title = '',
     this.searchTitle,
     this.showAction = true,
+    this.back = true,
     this.topPadding = 20,
     this.bottomPadding = 20,
     this.horizontalPadding = 16,
@@ -26,6 +28,7 @@ class DefaultBody extends StatelessWidget {
       appBar: CustomAppBar(
         title: title,
         searchTitle: searchTitle,
+        back: back,
         showAction: showAction,
       ),
       body: Padding(

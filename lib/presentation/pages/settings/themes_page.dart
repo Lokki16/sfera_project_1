@@ -12,20 +12,18 @@ class ThemesPage extends StatelessWidget {
         space: 12,
         children: [
           BuildSettingsTile(
-              text: ConstantText.light,
-              onTap: () {
-                Get.changeThemeMode(ThemeMode.light);
-                Get.changeTheme(SferaAppTheme.lightTheme);
-              }),
+            text: ConstantText.light,
+            onTap: () {
+              Get.changeThemeMode(ThemeMode.light);
+              Get.changeTheme(SferaAppTheme.lightTheme);
+            },
+          ),
           BuildSettingsTile(
-              text: ConstantText.dark,
-              onTap: () {
-                Get.changeThemeMode(ThemeMode.dark);
-                Get.changeTheme(SferaAppTheme.darkTheme);
-              }),
-          CustomButton(
-            text: ConstantText.back,
-            onPressed: () => Navigator.of(context).pop(),
+            text: ConstantText.dark,
+            onTap: () {
+              Get.changeThemeMode(ThemeMode.dark);
+              Get.changeTheme(SferaAppTheme.darkTheme);
+            },
           ),
         ],
       ),

@@ -8,6 +8,7 @@ class AuthorizationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultBody(
       title: ConstantText.enterInAccount,
+      back: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

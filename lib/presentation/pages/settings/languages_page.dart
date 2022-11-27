@@ -23,10 +23,6 @@ class LanguagesPage extends StatelessWidget {
             text: ConstantText.japanese,
             onTap: () => Get.updateLocale(Locales().jpLocale),
           ),
-          CustomButton(
-            text: ConstantText.back,
-            onPressed: () => Navigator.of(context).pop(),
-          ),
         ],
       ),
     );

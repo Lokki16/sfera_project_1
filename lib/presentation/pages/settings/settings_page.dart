@@ -19,7 +19,7 @@ class SettingsPage extends StatelessWidget {
           CustomButton(
             text: ConstantText.changeTheme,
             onPressed: () =>
-                Navigator.of(context).pushNamed(AppRoutes.routeToThemesPage),
+                Navigator.of(context).pushNamed(AppRoutes.routeToLanguagesPage),
           ),
         ],
       ),
