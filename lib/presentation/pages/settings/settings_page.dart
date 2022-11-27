@@ -25,7 +25,11 @@ class SettingsPage extends StatelessWidget {
             ),
             CustomButton(
               text: ConstantText.signOut,
-              onPressed: () {},
+              onPressed: () {
+                AuthorizationRepository().signOut();
+                Navigator.of(context)
+                    .pushNamed(AppRoutes.routeToAuthorizationPage);
+              },
             ),
           ],
         ),
