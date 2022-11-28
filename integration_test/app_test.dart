@@ -29,9 +29,13 @@ void main() {
         await tester.tap(findTapButtonSignUp);
         await tester.pumpAndSettle();
 
-        /*final name = randomUsermail.split('@');
+        final name = randomUsermail.split('@');
 
+        /*final name = randomUsermail.split('@');
+        
         expect(find.text(name[0]), findsOneWidget);*/
+        Future.delayed(const Duration(seconds: 5),
+            (() => expect(find.text(name[0]), findsOneWidget)));
       });
     });
   });
