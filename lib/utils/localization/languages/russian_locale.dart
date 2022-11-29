@@ -8,9 +8,6 @@ class Russian {
     ConstantText.forNewUser:
         'Если вы новый пользователь, то необходимо пройти регистрацию',
     ConstantText.signUp: 'Регистрация',
-    ConstantText.verificationToContinue:
-        'Для того, чтобы продолжить нужно пройти верификацию',
-    ConstantText.passVerification: 'Пройти верификацию',
     ConstantText.email: 'Почта',
     ConstantText.password: 'Пароль',
     ConstantText.signIn: 'Войти',

@@ -7,8 +7,6 @@ class English {
     ConstantText.back: 'Back',
     ConstantText.forNewUser: 'If you are a new user, you must register',
     ConstantText.signUp: 'Sign up',
-    ConstantText.verificationToContinue: 'You need to be verified to continue',
-    ConstantText.passVerification: 'Pass verification',
     ConstantText.email: 'Email',
     ConstantText.password: 'Password',
     ConstantText.signIn: 'Sign in',

@@ -7,8 +7,6 @@ class Japanese {
     ConstantText.back: '戻る',
     ConstantText.forNewUser: '新規ユーザーの場合は、登録が必要です',
     ConstantText.signUp: '登録',
-    ConstantText.verificationToContinue: '続行するには認証を受ける必要があります',
-    ConstantText.passVerification: '合格確認',
     ConstantText.email: 'Eメール',
     ConstantText.password: 'パスワード',
     ConstantText.signIn: 'ログイン',

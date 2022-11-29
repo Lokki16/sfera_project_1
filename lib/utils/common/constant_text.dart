@@ -4,8 +4,6 @@ class ConstantText {
   static const back = 'back';
   static const forNewUser = 'for_new_user';
   static const signUp = 'sign_up';
-  static const verificationToContinue = 'verification_to_continue';
-  static const passVerification = 'pass_verification';
   static const email = 'email';
   static const password = 'password';
   static const signIn = 'sign_in';
