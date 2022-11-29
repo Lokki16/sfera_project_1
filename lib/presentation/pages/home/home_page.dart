@@ -24,12 +24,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String? email = '';
-    if (FirebaseAuth.instance.currentUser != null &&
-        FirebaseAuth.instance.currentUser!.email != null) {
-      email = FirebaseAuth.instance.currentUser!.email;
+    String? email;
+    String? name;
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      if (currentUser.email != null) {
+        email = currentUser.email;
+      }
+      if (currentUser.displayName != null) {
+        name = currentUser.displayName;
+      }
     }
-    String userName = email!.split('@')[0];
+    String userName = email != null ? email.split('@')[0] : name ?? '';
 
     return BlocBuilder<CharacterBloc, CharacterState>(
       builder: (context, state) {
