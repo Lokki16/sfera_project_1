@@ -27,5 +27,6 @@ class Japanese {
     ConstantText.signOut: 'サインアウト',
     ConstantText.species: '種族：',
     ConstantText.gender: '性別：',
+    ConstantText.ressetPasswordMessage: 'メールに送信されたパスワードの回復',
   };
 }

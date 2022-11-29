@@ -25,4 +25,5 @@ class ConstantText {
   static const signOut = 'sign_out';
   static const species = 'species';
   static const gender = 'gender';
+  static const ressetPasswordMessage = 'resset_password_message';
 }

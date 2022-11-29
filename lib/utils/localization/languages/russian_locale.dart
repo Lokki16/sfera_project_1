@@ -29,5 +29,7 @@ class Russian {
     ConstantText.signOut: 'Выйти',
     ConstantText.species: 'Разновидность:',
     ConstantText.gender: 'Пол:',
+    ConstantText.ressetPasswordMessage:
+        'Восстановление пароля отправлено на почту',
   };
 }

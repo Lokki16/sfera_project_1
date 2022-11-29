@@ -28,6 +28,16 @@ class AuthorizationPage extends StatelessWidget {
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomTextButton(
+                text: ConstantText.resetPassword,
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.routeToResetPasswordPage),
+              ),
+            ],
+          ),
           SpacedRow(
             space: 5,
             mainAxisAlignment: MainAxisAlignment.center,

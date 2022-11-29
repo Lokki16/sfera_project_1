@@ -60,11 +60,13 @@ export '../widgets/appbar/appbar.dart';
 export '../widgets/modals/show_simple_dialog.dart';
 export '../widgets/modals/popup_layout.dart';
 export '../widgets/modals/authorization_error_dialog.dart';
+export '../widgets/modals/reset_password_dialog.dart';
 export '../widgets/character_info/character_info_card.dart';
 
 // pages
 export '../pages/authorization/authorization_page.dart';
 export '../pages/authorization/registration_page.dart';
+export '../pages/authorization/reset_password_page.dart';
 export '../pages/home/home_page.dart';
 export '../pages/settings/settings_page.dart';
 export '../pages/settings/languages_page.dart';

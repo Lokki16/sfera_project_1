@@ -27,5 +27,6 @@ class English {
     ConstantText.signOut: 'Sign out',
     ConstantText.species: 'Species:',
     ConstantText.gender: 'Gender:',
+    ConstantText.ressetPasswordMessage: 'Password recovery sent to email',
   };
 }
