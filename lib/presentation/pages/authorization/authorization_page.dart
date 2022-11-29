@@ -23,7 +23,7 @@ class AuthorizationPage extends StatelessWidget {
             onPressed: signInWithArgs(
               context,
               GoogleSignInArgs(
-                clientId: Constants.googleClientId,
+                clientId: Constants.clientId,
                 redirectUri: Constants.redirectUri,
               ),
             ),
