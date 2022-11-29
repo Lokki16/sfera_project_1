@@ -1,4 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:desktop_webview_auth/google.dart';
+import 'package:desktop_webview_auth/desktop_webview_auth.dart';
+
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class AuthorizationPage extends StatelessWidget {
@@ -16,7 +20,13 @@ class AuthorizationPage extends StatelessWidget {
           AuthorizationForm(),
           CustomButton(
             text: ConstantText.googleSignIn,
-            onPressed: () {},
+            onPressed: signInWithArgs(
+              context,
+              GoogleSignInArgs(
+                clientId: Constants.googleClientId,
+                redirectUri: Constants.redirectUri,
+              ),
+            ),
           ),
           SpacedRow(
             space: 5,
@@ -35,6 +45,20 @@ class AuthorizationPage extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> Function() signInWithArgs(
+          BuildContext context, ProviderArgs args) =>
+      () async {
+        try {
+          final result = await DesktopWebviewAuth.signIn(args);
+          final credential =
+              GoogleAuthProvider.credential(accessToken: result!.accessToken);
+          await FirebaseAuth.instance.signInWithCredential(credential);
+          Get.toNamed(AppRoutes.routeToHomePage);
+        } catch (e) {
+          authorizationErrorDialog(e);
+        }
+      };
 }
 
 class AuthorizationForm extends StatelessWidget {
@@ -87,7 +111,7 @@ class PasswordInput extends StatelessWidget {
       builder: (context, state) {
         return CustomTextField(
           nameField: ConstantText.password,
-          icon: Icons.lock,
+          icon: Icons.visibility,
           obscureText: true,
           validator: (password) => Validator.signInPasswordValidator(password),
           onChanged: (password) =>
@@ -101,9 +125,7 @@ class PasswordInput extends StatelessWidget {
 class SignInButton extends StatelessWidget {
   final GlobalKey<FormState> signInFormKey;
 
-  SignInButton({super.key, required this.signInFormKey});
-
-  final authorizationRepository = AuthorizationRepository();
+  const SignInButton({super.key, required this.signInFormKey});
 
   @override
   Widget build(BuildContext context) {
@@ -113,34 +135,12 @@ class SignInButton extends StatelessWidget {
           text: ConstantText.signIn,
           onPressed: () async {
             if (signInFormKey.currentState!.validate()) {
-              final signUpResult = await authorizationRepository.signIn(
-                  state.email, state.password);
-
-              if (signUpResult != null &&
-                  !signUpResult.toString().contains('AuthException:')) {
+              try {
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: state.email, password: state.password);
                 Get.toNamed(AppRoutes.routeToHomePage);
-              } else {
-                showSimpleDialog(
-                  titleTopPadding: 16,
-                  titleBottomPadding: 10,
-                  contentTopPadding: 10,
-                  contentBottomPadding: 16,
-                  contentHorizontalPadding: 10,
-                  title: const SpacedRow(
-                    space: 2,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CustomIcon(
-                        icon: Icons.error,
-                        color: ThemeColors.red,
-                        size: 20,
-                      ),
-                      CustomText(text: ConstantText.error),
-                    ],
-                  ),
-                  body: CustomText(text: signUpResult.toString()),
-                );
+              } catch (e) {
+                authorizationErrorDialog(e);
               }
             }
           },

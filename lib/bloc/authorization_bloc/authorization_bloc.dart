@@ -5,7 +5,7 @@ part 'authorization_event.dart';
 part 'authorization_state.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
-  AuthorizationBloc({required AuthorizationRepository authorizationRepository})
+  AuthorizationBloc()
       : super(const AuthorizationState(email: '', password: '')) {
     on<EmailChange>(_emailChanged);
     on<PasswordChange>(_passwordChanged);

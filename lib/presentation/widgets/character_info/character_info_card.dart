@@ -8,6 +8,7 @@ class CharacterInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomImage(image: character.image, width: 50, height: 100),
         SpacedColumn(

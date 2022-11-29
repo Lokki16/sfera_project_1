@@ -1,27 +1,12 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
 
-bool isSignedIn = false;
-
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
-  final authorizationRepository = AuthorizationRepository();
-
-  @override
-  void initState() {
-    authorizationRepository
-        .signInState()
-        .then((value) => setState(() => isSignedIn = value));
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return DefaultBody(
       topPadding: 50,
       title: ConstantText.settings,
@@ -40,17 +25,14 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: () =>
                   Navigator.of(context).pushNamed(AppRoutes.routeToThemesPage),
             ),
-            if (isSignedIn)
+            if (user != null)
               CustomButton(
                 text: ConstantText.signOut,
-                onPressed: () => authorizationRepository.signInState().then(
-                  (value) {
-                    setState(() => isSignedIn = value);
-                    AuthorizationRepository().signOut();
-                    Navigator.of(context)
-                        .pushNamed(AppRoutes.routeToAuthorizationPage);
-                  },
-                ),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.of(context)
+                      .pushNamed(AppRoutes.routeToAuthorizationPage);
+                },
               ),
           ],
         ),

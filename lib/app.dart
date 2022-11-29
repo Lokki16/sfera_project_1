@@ -4,16 +4,16 @@ import 'package:sfera_project_1/presentation/template/template.dart';
 class SferaApp extends StatelessWidget {
   SferaApp({super.key});
 
-  final authorizationRepository = AuthorizationRepository();
   final characterRepository = CharacterRepository();
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthorizationBloc(
-              authorizationRepository: authorizationRepository),
+          create: (context) => AuthorizationBloc(),
         ),
         BlocProvider(
             create: (context) =>
@@ -29,7 +29,9 @@ class SferaApp extends StatelessWidget {
           locale: Get.deviceLocale,
           fallbackLocale: Locales().enLocale,
           routes: AppRoutes.getRoutes,
-          initialRoute: AppRoutes.routeToAuthorizationPage,
+          initialRoute: user != null
+              ? AppRoutes.routeToHomePage
+              : AppRoutes.routeToAuthorizationPage,
         ),
       ),
     );

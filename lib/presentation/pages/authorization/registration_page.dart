@@ -17,13 +17,11 @@ class RegistrationPage extends StatelessWidget {
             key: signUpFormKey,
             child: SpacedColumn(
               children: [
-                const EmailInput(
-                  key: Key("emailfield"),
-                ),
+                const EmailInput(key: Key("emailfield")),
                 const PasswordInput(key: Key("passwordfield")),
                 SignUpButton(
-                  signUpFormKey: signUpFormKey,
                   key: const Key("signup_button"),
+                  signUpFormKey: signUpFormKey,
                 ),
               ],
             ),
@@ -37,9 +35,9 @@ class RegistrationPage extends StatelessWidget {
 class SignUpButton extends StatelessWidget {
   final GlobalKey<FormState> signUpFormKey;
 
-  SignUpButton({super.key, required this.signUpFormKey});
+  const SignUpButton({super.key, required this.signUpFormKey});
 
-  final authorizationRepository = AuthorizationRepository();
+  // final authorizationRepository = AuthorizationRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +46,12 @@ class SignUpButton extends StatelessWidget {
         return CustomButton(
           text: ConstantText.signUp,
           onPressed: () async {
-            if (signUpFormKey.currentState!.validate()) {
-              final signUpResult = await authorizationRepository.signUp(
-                  state.email, state.password);
-
-              if (signUpResult != null &&
-                  !signUpResult.toString().contains('AuthException:')) {
-                Get.toNamed(AppRoutes.routeToHomePage);
-              }
+            try {
+              await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                  email: state.email, password: state.password);
+              Get.toNamed(AppRoutes.routeToHomePage);
+            } catch (e) {
+              authorizationErrorDialog(e);
             }
           },
         );

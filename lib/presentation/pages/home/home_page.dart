@@ -9,17 +9,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final authorizationRepository = AuthorizationRepository();
-  bool isSignedIn = false;
-  String userMail = '';
-  String userName = '';
-
   List<CharacterResultsModel> currentResults = [];
 
   @override
   void initState() {
-    setUserActionMenu();
-
     if (currentResults.isEmpty) {
       context
           .read<CharacterBloc>()
@@ -31,6 +24,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final email = FirebaseAuth.instance.currentUser!.email;
+    final userName = email!.split('@')[0];
+
     return BlocBuilder<CharacterBloc, CharacterState>(
       builder: (context, state) {
         return DefaultBody(
@@ -63,19 +59,6 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
-
-  setUserActionMenu() {
-    authorizationRepository.signInState().then((value) => setState(() {
-          isSignedIn = value;
-          if (isSignedIn) {
-            authorizationRepository.currentUser().then((value) {
-              userMail = value.email;
-              final emailArray = userMail.split('@');
-              userName = emailArray[0];
-            });
-          }
-        }));
-  }
 }
 
 class Loading extends StatelessWidget {
@@ -105,10 +88,9 @@ class Loaded extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
+      mainAxisSpacing: 50,
       crossAxisCount: 2,
-      childAspectRatio: 6,
+      childAspectRatio: 4,
       shrinkWrap: true,
       children: List.generate(currentResults.length, (index) {
         final character = currentResults[index];
