@@ -37,8 +37,6 @@ class SignUpButton extends StatelessWidget {
 
   const SignUpButton({super.key, required this.signUpFormKey});
 
-  // final authorizationRepository = AuthorizationRepository();
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthorizationBloc, AuthorizationState>(
