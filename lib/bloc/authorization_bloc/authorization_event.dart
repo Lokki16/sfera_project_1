@@ -1,27 +1,10 @@
 part of 'authorization_bloc.dart';
 
-@immutable
-abstract class AuthorizationEvent extends Equatable {
-  const AuthorizationEvent();
+@freezed
+class AuthorizationEvent with _$AuthorizationEvent {
+  const factory AuthorizationEvent.emailChange({required String email}) =
+      _AuthorizationEventEmailChange;
 
-  @override
-  List<Object> get props => [];
-}
-
-class EmailChange extends AuthorizationEvent {
-  final String email;
-
-  const EmailChange(this.email);
-
-  @override
-  List<Object> get props => [email];
-}
-
-class PasswordChange extends AuthorizationEvent {
-  final String password;
-
-  const PasswordChange(this.password);
-
-  @override
-  List<Object> get props => [password];
+  const factory AuthorizationEvent.passwordChange({required String password}) =
+      _AuthorizationEventPasswordChange;
 }

@@ -103,8 +103,9 @@ class EmailInput extends StatelessWidget {
           nameField: ConstantText.email,
           icon: Icons.account_box,
           validator: (email) => Validator.signInEmailValidator(email),
-          onChanged: (email) =>
-              context.read<AuthorizationBloc>().add(EmailChange(email)),
+          onChanged: (email) => context
+              .read<AuthorizationBloc>()
+              .add(AuthorizationEvent.emailChange(email: email)),
         );
       },
     );
@@ -124,8 +125,9 @@ class PasswordInput extends StatelessWidget {
           icon: Icons.visibility,
           obscureText: true,
           validator: (password) => Validator.signInPasswordValidator(password),
-          onChanged: (password) =>
-              context.read<AuthorizationBloc>().add(PasswordChange(password)),
+          onChanged: (password) => context
+              .read<AuthorizationBloc>()
+              .add(AuthorizationEvent.passwordChange(password: password)),
         );
       },
     );

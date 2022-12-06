@@ -1,25 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sfera_project_1/presentation/template/template.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'authorization_bloc.freezed.dart';
 
 part 'authorization_event.dart';
 part 'authorization_state.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   AuthorizationBloc()
-      : super(const AuthorizationState(email: '', password: '')) {
-    on<EmailChange>(_emailChanged);
-    on<PasswordChange>(_passwordChanged);
+      : super(const AuthorizationState.loaded(email: '', password: '')) {
+    on<_AuthorizationEventEmailChange>(_emailChanged);
+    on<_AuthorizationEventPasswordChange>(_passwordChanged);
   }
 
   void _emailChanged(
-    EmailChange event,
+    _AuthorizationEventEmailChange event,
     Emitter<AuthorizationState> emit,
   ) {
     emit(state.copyWith(email: event.email));
   }
 
   void _passwordChanged(
-    PasswordChange event,
+    _AuthorizationEventPasswordChange event,
     Emitter<AuthorizationState> emit,
   ) {
     emit(state.copyWith(password: event.password));
