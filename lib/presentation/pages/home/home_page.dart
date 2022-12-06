@@ -9,10 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CharacterModel? currentCharacter;
   List<CharacterResultsModel> currentResults = [];
-  int currentPage = 1;
-  String currentSearch = '';
 
   @override
   void initState() {
@@ -27,36 +24,49 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultBody(
-      child:
-          BlocBuilder<CharacterBloc, CharacterState>(builder: (context, state) {
-        return Column(
-          children: [
-            CustomTextField(
-                hintText: 'Search Name',
-                onChanged: (value) {
-                  currentPage = 1;
-                  currentResults = [];
-                  currentSearch = value;
-                  context.read<CharacterBloc>().add(
-                      CharacterEvent.fetch(name: value, page: currentPage));
-                }),
-            Expanded(
-              child: state.when(
-                loading: () => const Loading(),
-                loaded: (characterLoaded) {
-                  currentCharacter = characterLoaded;
-                  currentResults = currentCharacter!.results;
-                  return currentResults.isNotEmpty
-                      ? Loaded(currentResults: currentResults)
-                      : const SizedBox.shrink();
-                },
-                error: () => const CustomText(text: 'Error'),
-              ),
+    String? email;
+    String? name;
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      if (currentUser.email != null) {
+        email = currentUser.email;
+      }
+      if (currentUser.displayName != null) {
+        name = currentUser.displayName;
+      }
+    }
+    String userName = email != null ? email.split('@')[0] : name ?? '';
+
+    return BlocBuilder<CharacterBloc, CharacterState>(
+      builder: (context, state) {
+        return DefaultBody(
+          back: false,
+          showProfile: userName,
+          searchTitle: CustomTextField(
+            width: context.mediaQuery.size.width / 2,
+            height: 52,
+            icon: Icons.search,
+            onChanged: (value) {
+              currentResults = [];
+              context
+                  .read<CharacterBloc>()
+                  .add(CharacterEvent.fetch(name: value, page: 1));
+            },
+          ),
+          child: Expanded(
+            child: state.when(
+              loading: () => const Loading(),
+              loaded: (characterLoaded) {
+                currentResults = characterLoaded.results;
+                return currentResults.isNotEmpty
+                    ? Loaded(currentResults: currentResults)
+                    : const SizedBox.shrink();
+              },
+              error: () => const Error(),
             ),
-          ],
+          ),
         );
-      }),
+      },
     );
   }
 }
@@ -73,7 +83,7 @@ class Loading extends StatelessWidget {
         space: 5,
         children: [
           CircularProgressIndicator(strokeWidth: 2.w),
-          const CustomText(text: 'Loading...'),
+          const CustomText(text: ConstantText.loading),
         ],
       ),
     );
@@ -87,22 +97,33 @@ class Loaded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: currentResults.length,
-      separatorBuilder: (_, index) => SizedBox(height: 5.h),
+    return GridView.count(
+      mainAxisSpacing: 50,
+      crossAxisCount: 2,
+      childAspectRatio: 4,
       shrinkWrap: true,
-      itemBuilder: (context, index) {
+      children: List.generate(currentResults.length, (index) {
         final character = currentResults[index];
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 16.h),
-          child: ListTile(
-            title: CustomText(
-              text: character.name,
-              textStyle: ThemeTextStyle.test.apply(color: ThemeColors.black),
-            ),
-          ),
-        );
-      },
+        return CharacterInfoCard(character: character);
+      }),
+    );
+  }
+}
+
+class Error extends StatelessWidget {
+  const Error({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          CustomText(text: ConstantText.error),
+        ],
+      ),
     );
   }
 }

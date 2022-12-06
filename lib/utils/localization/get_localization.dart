@@ -1,5 +1,4 @@
 import 'package:sfera_project_1/presentation/template/template.dart';
-import 'package:sfera_project_1/utils/localization/languages/japanese_locale.dart';
 
 class GetLocalization extends Translations {
   @override

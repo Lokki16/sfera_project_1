@@ -1,3 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:desktop_webview_auth/google.dart';
+import 'package:desktop_webview_auth/desktop_webview_auth.dart';
+
 import 'package:sfera_project_1/presentation/template/template.dart';
 
 class AuthorizationPage extends StatelessWidget {
@@ -6,134 +11,153 @@ class AuthorizationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultBody(
-      title: ConstantText.enterInAccount,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 25.h),
-            const AuthorizationForm(),
-            SizedBox(height: 25.h),
-            const CustomText(
-              text: ConstantText.forNewUser,
-              textStyle: ThemeTextStyle.test,
-            ),
-            SizedBox(height: 5.h),
-            TextButton(
-              child: const CustomText(text: ConstantText.register),
-              onPressed: () =>
-                Navigator.of(context).pushNamed(AppRoutes.routeToRegistration),             
-            ),
-            SizedBox(height: 25.h),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AuthorizationForm extends StatefulWidget {
-  const AuthorizationForm({super.key});
-
-  @override
-  State<AuthorizationForm> createState() => _AuthorizationFormState();
-}
-
-class _AuthorizationFormState extends State<AuthorizationForm> {
-  final AuthorizationRepository firebaseAuthService = AuthorizationRepository();
-  final signInForm = GlobalKey<FormState>();
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
-  String email = '';
-  String password = '';
-  String signInError = '';
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: signInForm,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      title: ConstantText.signIn,
+      back: false,
+      child: SpacedColumn(
+        space: 25,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CustomText(
-            text: ConstantText.username,
-            textStyle: ThemeTextStyle.test,
-          ),
-          SizedBox(height: 5.h),
-          CustomTextField(
-            controller: emailController,
-            onChanged: (value) => setState(() => email = value),
-            validator: (value) => Validator.loginEmailValidator(value),
-          ),
-          SizedBox(height: 20.h),
-          const CustomText(
-            text: ConstantText.password,
-            textStyle: ThemeTextStyle.test,
-          ),
-          SizedBox(height: 5.h),
-          CustomTextField(
-            controller: passwordController,
-            obscureText: true,
-            onChanged: (value) => setState(() => password = value),
-            validator: (value) => Validator.loginPasswordValidator(value),
-          ),
-          SizedBox(height: 25.h),
-          Row(
-            children: [
-              TextButton(
-                style: ButtonStyle(
-                  backgroundColor: const MaterialStatePropertyAll(
-                      ThemeColors.sferaBlueWidget),
-                  foregroundColor:
-                      const MaterialStatePropertyAll(ThemeColors.white),
-                  padding: MaterialStatePropertyAll(
-                    EdgeInsets.symmetric(
-                      horizontal: 15.w,
-                      vertical: 8.h,
-                    ),
-                  ),
-                ),
-                onPressed: _onLoginButtonPressed,
-                child: const CustomText(text: ConstantText.login),
+          AuthorizationForm(),
+          CustomButton(
+            text: ConstantText.googleSignIn,
+            onPressed: signInWithArgs(
+              context,
+              GoogleSignInArgs(
+                clientId: Constants.clientId,
+                redirectUri: Constants.redirectUri,
               ),
-              SizedBox(width: 30.w),
-              TextButton(
-                onPressed: () {},
-                child: const CustomText(text: ConstantText.resetPassword),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomTextButton(
+                text: ConstantText.resetPassword,
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.routeToResetPasswordPage),
               ),
             ],
-          )
+          ),
+          SpacedRow(
+            space: 5,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CustomText(text: ConstantText.forNewUser),
+              CustomTextButton(
+                key: const Key("route_reg"),
+                text: ConstantText.signUp,
+                onPressed: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.routeToRegistrationPage),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 
-  void _onLoginButtonPressed() async {
-    if (signInForm.currentState!.validate()) {
-      final signUpResult = await firebaseAuthService.signIn(email, password);
+  Future<void> Function() signInWithArgs(
+          BuildContext context, ProviderArgs args) =>
+      () async {
+        try {
+          final result = await DesktopWebviewAuth.signIn(args);
+          final credential =
+              GoogleAuthProvider.credential(accessToken: result!.accessToken);
+          await FirebaseAuth.instance.signInWithCredential(credential);
+          Get.toNamed(AppRoutes.routeToHomePage);
+        } catch (e) {
+          authorizationErrorDialog(e);
+        }
+      };
+}
 
-      if (!mounted) return;
+class AuthorizationForm extends StatelessWidget {
+  AuthorizationForm({super.key});
 
-      if (signUpResult != null &&
-          !signUpResult.toString().contains('AuthException:')) {
-        logger('SignIn Success');
-        Navigator.of(context).pushNamed(AppRoutes.routeToHome);
-      } else {
-        signInError = signUpResult.toString();
-        showSimpleDialog(body: const CustomText(text: 'Error'));
-        logger(signUpResult.toString());
-      }
-    } else {
-      logger('Unable to validate sign in form!');
-    }
+  final signInFormKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: signInFormKey,
+      child: SpacedColumn(
+        children: [
+          const EmailInput(),
+          const PasswordInput(),
+          SignInButton(signInFormKey: signInFormKey),
+        ],
+      ),
+    );
+  }
+}
+
+class EmailInput extends StatelessWidget {
+  const EmailInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return CustomTextField(
+          nameField: ConstantText.email,
+          icon: Icons.account_box,
+          validator: (email) => Validator.signInEmailValidator(email),
+          onChanged: (email) => context
+              .read<AuthorizationBloc>()
+              .add(AuthorizationEvent.emailChange(email: email)),
+        );
+      },
+    );
+  }
+}
+
+class PasswordInput extends StatelessWidget {
+  const PasswordInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return CustomTextField(
+          nameField: ConstantText.password,
+          icon: Icons.visibility,
+          obscureText: true,
+          validator: (password) => Validator.signInPasswordValidator(password),
+          onChanged: (password) => context
+              .read<AuthorizationBloc>()
+              .add(AuthorizationEvent.passwordChange(password: password)),
+        );
+      },
+    );
+  }
+}
+
+class SignInButton extends StatelessWidget {
+  final GlobalKey<FormState> signInFormKey;
+
+  const SignInButton({super.key, required this.signInFormKey});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      builder: (context, state) {
+        return CustomButton(
+          text: ConstantText.signIn,
+          onPressed: () async {
+            if (signInFormKey.currentState!.validate()) {
+              try {
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: state.email, password: state.password);
+                Get.toNamed(AppRoutes.routeToHomePage);
+              } catch (e) {
+                authorizationErrorDialog(e);
+              }
+            }
+          },
+        );
+      },
+    );
   }
 }

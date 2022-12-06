@@ -5,21 +5,37 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return DefaultBody(
-      child: SpacedColumn(
-        space: 5.h,
-        children: [
-          CustomButton(
-            text: ConstantText.changeLanguage,
-            onPressed: () =>
-                Navigator.of(context).pushNamed(AppRoutes.routeToLanguages),
-          ),
-          CustomButton(
-            text: ConstantText.changeTheme,
-            onPressed: () =>
-                Navigator.of(context).pushNamed(AppRoutes.routeToThemes),
-          ),
-        ],
+      topPadding: 50,
+      title: ConstantText.settings,
+      showSettings: false,
+      child: Center(
+        child: SpacedColumn(
+          space: 5.h,
+          children: [
+            CustomButton(
+              text: ConstantText.changeLanguage,
+              onPressed: () => Navigator.of(context)
+                  .pushNamed(AppRoutes.routeToLanguagesPage),
+            ),
+            CustomButton(
+              text: ConstantText.changeTheme,
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.routeToThemesPage),
+            ),
+            if (user != null)
+              CustomButton(
+                text: ConstantText.signOut,
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.of(context)
+                      .pushNamed(AppRoutes.routeToAuthorizationPage);
+                },
+              ),
+          ],
+        ),
       ),
     );
   }

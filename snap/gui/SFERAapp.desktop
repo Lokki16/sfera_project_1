@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=sfera-app
+Comment=Super Cool App that does everything
+Exec=sfera-app
+Terminal=false
+Type=Application
+Categories=Education; #adjust accordingly your snap category

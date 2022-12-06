@@ -1,0 +1,29 @@
+name: sfera-app
+version: 0.1.0
+summary: Super Cool App
+description: Super Cool App that does everything!
+
+confinement: strict
+base: core18
+grade: stable
+
+slots:
+  dbus-sfera-app: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: org.bar.super_cool_app # adjust accordingly to your app name and
+    
+apps:
+  sfera-app:
+    command: sfera-app
+    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
+    plugs:
+    - network
+    - desktop
+    slots:
+      - dbus-sfera-app
+parts:
+  sfera-app:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application

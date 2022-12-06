@@ -5,16 +5,12 @@ class Russian {
     ConstantText.changeLanguage: 'Изменить язык',
     ConstantText.changeTheme: 'Изменить тему',
     ConstantText.back: 'Назад',
-    ConstantText.enterInAccount: 'Войти в аккаунт',
     ConstantText.forNewUser:
         'Если вы новый пользователь, то необходимо пройти регистрацию',
-    ConstantText.register: 'Зарегестрироваться',
-    ConstantText.verificationToContinue:
-        'Для того, чтобы продолжить нужно пройти верификацию',
-    ConstantText.passVerification: 'Пройти верификацию',
-    ConstantText.username: 'Имя пользователя',
+    ConstantText.signUp: 'Регистрация',
+    ConstantText.email: 'Почта',
     ConstantText.password: 'Пароль',
-    ConstantText.login: 'Войти',
+    ConstantText.signIn: 'Войти',
     ConstantText.resetPassword: 'Сбросить пароль',
     ConstantText.russian: 'Русский',
     ConstantText.english: 'Английский',
@@ -22,5 +18,15 @@ class Russian {
     ConstantText.light: 'Светлая',
     ConstantText.dark: 'Темная',
     ConstantText.settings: 'Настройки',
+    ConstantText.googleSignIn: 'Авторизироваться с помощью Google',
+    ConstantText.error: 'Ошибка',
+    ConstantText.loading: 'Загрузка...',
+    ConstantText.languages: 'Языки',
+    ConstantText.themes: 'Темы',
+    ConstantText.signOut: 'Выйти',
+    ConstantText.species: 'Разновидность:',
+    ConstantText.gender: 'Пол:',
+    ConstantText.ressetPasswordMessage:
+        'Восстановление пароля отправлено на почту',
   };
 }

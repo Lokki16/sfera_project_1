@@ -9,7 +9,7 @@ class CustomText extends StatelessWidget {
   const CustomText({
     Key? key,
     required this.text,
-    this.textStyle,
+    this.textStyle = ThemeTextSemibold.s20,
     this.width,
     this.height,
   }) : super(key: key);
@@ -19,10 +19,7 @@ class CustomText extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: Text(
-        text.tr,
-        style: textStyle,
-      ),
+      child: Text(text.tr, style: textStyle),
     );
   }
 }
