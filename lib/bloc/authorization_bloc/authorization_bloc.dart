@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sfera_project_1/presentation/template/template.dart';
 
 part 'authorization_bloc.freezed.dart';
 

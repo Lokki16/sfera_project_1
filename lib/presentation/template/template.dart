@@ -36,6 +36,7 @@ export '../../data/navigation/routes.dart';
 export '../../data/repositories/character_repository.dart';
 
 // models
+export '../../data/models/authorization_models/authorization_model.dart';
 export '../../data/models/character_models/character_model.dart';
 export '../../data/models/character_models/character_info_model.dart';
 export '../../data/models/character_models/character_results_model.dart';
